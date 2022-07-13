@@ -53,7 +53,7 @@ jobs:
           git config --global user.name "2115-27"
           npm version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
-          npm publish -Dsnapshot.version=${{needs.Set_Release_Version.outputs.currentversion}}          
+          npm publish           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
