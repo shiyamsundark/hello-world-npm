@@ -50,7 +50,7 @@ jobs:
       - run: |
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
            
-          
+          npm version 0.0.3
           npm pack
           npm publish 
         env:
