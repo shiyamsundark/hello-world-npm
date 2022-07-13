@@ -45,7 +45,7 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@2115-27'
       - run: npm install --force
-      - run: npm publish --tag=1.0.1
+      - run: npm publish --tag=2.0.1
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
