@@ -49,10 +49,11 @@ jobs:
       - run: npm install --force
       - run: |
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
+          git clone https://github.com/2115-27/hello-world-npm.git Username: 2115-27 Password:  ${{ secrets.GITHUB_TOKEN }}
           npm version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           npm publish 
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          env:
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
        
