@@ -1,6 +1,6 @@
 {
   "name": "@2115-27/hello-world-npm-pkg",
-  "version": "22.02.031",
+  "version": " ",
   "description": "A simple npm package to demonstrate GitHub Package Registry",
   "main": "index.js",
   "scripts": {
