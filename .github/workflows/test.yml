@@ -49,7 +49,7 @@ jobs:
       - run: npm install --force
       - run: |
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
-          npm publish --tag=${{needs.Set_Release_Version.outputs.currentversion}}
+          npm publish 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
