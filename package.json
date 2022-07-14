@@ -16,5 +16,8 @@
     "url": "https://github.com/2115-27/hello-world-npm/issues"
   },
   "homepage": "https://github.com/2115-27/hello-world-npm#readme",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/2115-27"
+  }
   "private": true
 }
