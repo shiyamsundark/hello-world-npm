@@ -54,8 +54,9 @@ jobs:
           npm version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           ls -lrta
-          zip cpqui-nightly.zip *.tgz 
+          zip helloworld.zip *.tgz 
           ls -lrta
+          npm publish
           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
