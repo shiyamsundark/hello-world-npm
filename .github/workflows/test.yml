@@ -56,7 +56,7 @@ jobs:
           ls -lrta
           zip helloworld.zip *.tgz 
           ls -lrta
-          npm publish
+          pwd
           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
