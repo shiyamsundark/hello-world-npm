@@ -43,7 +43,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: 'https://npm.pkg.github.com/2115-27'
           # Defaults to the user or organization that owns the workflow file
           scope: '@2115-27'
       - run: npm install --force
