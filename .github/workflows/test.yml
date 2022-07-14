@@ -55,7 +55,8 @@ jobs:
           npm pack
           ls -lrta
           zip cpqui-nightly.zip *.tgz 
-          npm publish cpqui-nightly.zip          
+          ls -lrta
+          
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
