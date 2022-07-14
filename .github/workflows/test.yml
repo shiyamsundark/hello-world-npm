@@ -58,7 +58,7 @@ jobs:
           zip helloworld.zip ./cpqui 
           ls -lrta
           pwd
-          npm publish /home/runner/work/hello-world-npm/hello-world-npm/helloworld.zip
+          npm publish /home/runner/work/hello-world-npm/hello-world-npm/cpqui
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
