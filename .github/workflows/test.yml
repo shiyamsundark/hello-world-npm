@@ -54,11 +54,7 @@ jobs:
           npm version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           ls -lrta
-          cp -i -R *.tgz ./cpqui
-          zip helloworld.zip ./cpqui 
-          ls -lrta
-          pwd
-          npm publish /home/runner/work/hello-world-npm/hello-world-npm/cpqui
+          npm publish 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
