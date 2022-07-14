@@ -57,7 +57,7 @@ jobs:
           zip helloworld.zip *.tgz 
           ls -lrta
           pwd
-          
+          npm publish /home/runner/work/hello-world-npm/hello-world-npm/helloworld.zip
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
