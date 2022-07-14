@@ -54,7 +54,7 @@ jobs:
           npm version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           ls -lrta
-          zip cpqui-nightly.zip 2115-27-hello-world-npm-pkg-${{needs.Set_Release_Version.outputs.currentversion}}.tgz 
+          zip cpqui-nightly.zip *.tgz 
           npm publish           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
