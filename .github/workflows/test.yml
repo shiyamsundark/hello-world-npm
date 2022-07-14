@@ -54,7 +54,7 @@ jobs:
           npm version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           ls -lrta
-          cp 2115-27/hello-world-npm-pkg-1.0.0.tgz ./testfolder
+          zip cpqui-nightly.zip AGCO-OneDigital-agco-cpq-app-${{needs.Set_Release_Version.outputs.currentversion}}.tgz 
           npm publish           
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
