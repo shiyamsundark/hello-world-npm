@@ -49,6 +49,8 @@ jobs:
       - run: npm install --force
       - name: git tagging
         run: |
+          git config user.name ${{ github.actor }}
+          git config user.email ${{ github.actor }}@users.noreply.github.co
           sudo git tag ${{needs.Set_Release_Version.outputs.currentversion}}
           sudo git push origin ${{needs.Set_Release_Version.outputs.currentversion}}
 #         run: |
