@@ -2,7 +2,8 @@ name: Node
 
 on:
   workflow_dispatch:
-
+env:
+  GITHUB_TOKEN: ${{ secrets.GHUB_TOKEN }}
 jobs:
   Set_Release_Version:
     runs-on: ubuntu-latest
