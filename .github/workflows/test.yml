@@ -48,7 +48,7 @@ jobs:
       - run: npm install --force
       - name: git tagging
         run: |
-          shaobject=$(git rev-parse HEAD)
+          shaobject=$(git rev-parse --short HEAD)
           echo $shaobject
           curl -X POST -H "Accept:application/vnd.github+json" -H "Authorization:token ${{ secrets.GHUB_TOKEN }}" https://api.github.com/repos/2115-27/hello-world-npm/git/tags -d '{"tag":"${{needs.Set_Release_Version.outputs.currentversion}}","message":"initial version","object":"$shaobject","type":"commit"}'
 #       - name : publish to package registry
