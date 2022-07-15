@@ -49,7 +49,7 @@ jobs:
       - name: git tagging
         run: |
           git tag ${{needs.Set_Release_Version.outputs.currentversion}}
-           git push origin ${{needs.Set_Release_Version.outputs.currentversion}}
+          git push origin https://${{ secrets.GHUB_TOKEN }}@github.com/2115-27/hello-world-npm.git ${{needs.Set_Release_Version.outputs.currentversion}}
 #         run: |
 #           shaobject=$(git rev-parse --short HEAD)
 #           echo $shaobject
