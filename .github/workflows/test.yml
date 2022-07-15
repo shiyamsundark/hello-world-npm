@@ -47,7 +47,7 @@ jobs:
           scope: '@2115-27'
       - run: npm install --force
       - name: git tagging
-        run: curl -X POST -H "Accept:application/vnd.github+json" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/2115-27/hello-world-npm/git/tags -d '{"tag":"${{needs.Set_Release_Version.outputs.currentversion}}"}'
+        run: curl -X POST -H "Accept:application/vnd.github+json" -H "Authorization:token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/2115-27/hello-world-npm/git/tags -d '{"tag":"${{needs.Set_Release_Version.outputs.currentversion}}","message":"initial version","object":"c3d0be41ecbe669545ee3e94d31ed9a4bc91ee3c","type":"commit"}'
       - name : publish to package registry
         run: |
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
@@ -56,7 +56,7 @@ jobs:
           npm --no-git-tag-version version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           ls -lrta
-          npm publish --tag ${{needs.Set_Release_Version.outputs.currentversion}}
+          npm publish 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
  
