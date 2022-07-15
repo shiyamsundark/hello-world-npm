@@ -49,8 +49,7 @@ jobs:
       - name: git tagging
         run: |
           sudo git tag ${{needs.Set_Release_Version.outputs.currentversion}}
-          sudo git remote add origin https://${{ secrets.GHUB_TOKEN }}@github.com/2115-27/hello-world-npm.git
-          git push origin ${{needs.Set_Release_Version.outputs.currentversion}}
+          sudo git push origin ${{needs.Set_Release_Version.outputs.currentversion}}
 #         run: |
 #           shaobject=$(git rev-parse --short HEAD)
 #           echo $shaobject
