@@ -53,7 +53,7 @@ jobs:
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
           git config --global user.email "athulyams2000@gmail.com"
           git config --global user.name "2115-27"
-          npm version ${{needs.Set_Release_Version.outputs.currentversion}}
+          npm --no-git-tag-version version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           ls -lrta
           npm publish --tag ${{needs.Set_Release_Version.outputs.currentversion}}
