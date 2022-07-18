@@ -19,5 +19,4 @@
   "publishConfig": {
     "registry":"https://npm.pkg.github.com/2115-27/"
   },
-  "private": true
 }
