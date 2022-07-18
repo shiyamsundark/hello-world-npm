@@ -46,6 +46,16 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
           scope: '@2115-27'
+      - name: Create tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
+              sha: context.sha
+            })
       - run: npm install --force
       - run: |
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
