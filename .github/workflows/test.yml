@@ -54,7 +54,7 @@ jobs:
           npm version --no-git-tag-version ${{needs.Set_Release_Version.outputs.currentversion}}
           npm pack
           ls -lrta
-          npm publish --access restricted
+          npm publish 
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
