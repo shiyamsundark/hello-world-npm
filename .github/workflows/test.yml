@@ -54,11 +54,11 @@ jobs:
     - name: publish
       run: npm install --force
     - run: |
+          cd Destdirectory
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
           git config --global user.email "athulyams2000@gmail.com"
           git config --global user.name "2115-27"
           npm version --no-git-tag-version ${{needs.Set_Release_Version.outputs.currentversion}}
-          cd Destdirectory
           npm pack
           ls -lrta
           npm publish 
