@@ -36,32 +36,32 @@ jobs:
     - run: |
         echo ${{needs.Set_Release_Version.outputs.currentversion}}
         npm run build --if-present
+        ls -lrta
+        cd foldertocopy
         cp -R foldertocopy Destdirectory 
-        ls -lrta
-        cd Destdirectory
-        ls -lrta
+       
       
-    - name: Create tag
-      uses: actions/github-script@v5
-      with:
-        script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
-            sha: context.sha
-          })
-    - name: publish
-      run: npm install --force
-    - run: |
-          echo ${{needs.Set_Release_Version.outputs.currentversion}}
-          git config --global user.email "athulyams2000@gmail.com"
-          git config --global user.name "2115-27"
-          npm version --no-git-tag-version ${{needs.Set_Release_Version.outputs.currentversion}}
-          npm pack
-          ls -lrta
-          npm publish 
-      env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#     - name: Create tag
+#       uses: actions/github-script@v5
+#       with:
+#         script: |
+#           github.rest.git.createRef({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
+#             sha: context.sha
+#           })
+#     - name: publish
+#       run: npm install --force
+#     - run: |
+#           echo ${{needs.Set_Release_Version.outputs.currentversion}}
+#           git config --global user.email "athulyams2000@gmail.com"
+#           git config --global user.name "2115-27"
+#           npm version --no-git-tag-version ${{needs.Set_Release_Version.outputs.currentversion}}
+#           npm pack
+#           ls -lrta
+#           npm publish 
+#       env:
+#           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
        
