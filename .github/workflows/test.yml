@@ -38,6 +38,8 @@ jobs:
         npm run build --if-present
         cp -R foldertocopy Destdirectory 
         ls -lrta
+        cd Destdirectory
+        ls -lrta
       
     - name: Create tag
       uses: actions/github-script@v5
