@@ -37,8 +37,9 @@ jobs:
         echo ${{needs.Set_Release_Version.outputs.currentversion}}
         npm run build --if-present
         ls -lrta
-        cd foldertocopy
         cp -R foldertocopy Destdirectory 
+        cd Destdirectory
+        ls -lrta
        
       
 #     - name: Create tag
