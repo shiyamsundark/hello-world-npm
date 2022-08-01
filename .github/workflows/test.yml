@@ -42,4 +42,4 @@ jobs:
             
             ls -lrta
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+          NODE_AUTH_TOKEN: ${{ secrets.GHB_TOKEN }}  
