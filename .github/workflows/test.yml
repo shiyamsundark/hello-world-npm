@@ -39,3 +39,5 @@ jobs:
             echo ${{ github.event.inputs.version }}
             npm install @2115-27/hello-world-npm-pkg@22.2.108 --legacy-peer-deps
             ls -lrta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
