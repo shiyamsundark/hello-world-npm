@@ -14,23 +14,28 @@ on:
           - pg
           - agt
           - wgpg
-          - aspg
-       Environment2:
-          type: choice
-          description: env for A.B.C.D
-          options:
-          - pg
-          - agt
-          - wgpg
-          - aspg
-          - dev
-          - test
-          - stg
-          - hotfix
-          required: true 
+          - aspg   
 
 jobs:        
    Deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read 
+      id-token: write
     steps:
-    - run: echo testing
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Node Setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          registry-url: https://npm.pkg.github.com/
+          scope: 2115-27
+
+      - name: Download package
+        run: |
+            echo ${{ github.event.inputs.version }}
+            npm install @2115-27/hello-world-npm-pkg@22.2.108 --legacy-peer-deps
+            ls -lrta
