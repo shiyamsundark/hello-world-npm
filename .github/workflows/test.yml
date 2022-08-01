@@ -1,13 +1,33 @@
 name: DEPLOY
 on:
   workflow_dispatch:
-      inputs: 
+    inputs: 
        version:
-        description: 'Version'
-        default: '1.0-SNAPSHOT'
-        required: true
-        type: string
-        
+          description: 'Version'
+          default: '22.2.66'
+          required: true
+          type: string
+       Environment1:
+          type: choice
+          description: env for 1.0-SNAPSHOT
+          options:
+          - pg
+          - agt
+          - wgpg
+          - aspg
+       Environment2:
+          type: choice
+          description: env for A.B.C.D
+          options:
+          - pg
+          - agt
+          - wgpg
+          - aspg
+          - dev
+          - test
+          - stg
+          - hotfix
+          required: true 
 
 jobs:        
    Deploy:
