@@ -32,6 +32,8 @@ jobs:
           env=${{ github.event.inputs.environment }}
            if [[ $env == agt ]]; then
              env="dev-agt"
+             dest="$env"
+             echo $dest
              echo $env
            fi
           echo $env
