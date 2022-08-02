@@ -33,11 +33,11 @@ jobs:
            if [[ $env == agt ]]; then
              env="dev-agt"
              echo $env
-             destination ="$env"
-           else
-             destination ="$env"
            fi
           echo $env
-          echo $destination
+          configFolder="build.$env"
+          UIbucketName="cpq-$env.org.com
+          echo $configFolder
+          echo $UIbucketName
             
        
