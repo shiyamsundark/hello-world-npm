@@ -24,19 +24,20 @@ jobs:
       packages: read 
       id-token: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+#       - name: Checkout code
+#         uses: actions/checkout@v2
 
-      - name: Node Setup
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          registry-url: https://npm.pkg.github.com/
-          scope: 2115-27
+#       - name: Node Setup
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: '16'
+#           registry-url: https://npm.pkg.github.com/
+#           scope: 2115-27
 
       - name: Download package
         run: |
-            echo ${{ github.event.inputs.version }}
+            env = echo ${{ github.event.inputs.version }}
+            echo $env
             npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball
             wget $(npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball)
             
