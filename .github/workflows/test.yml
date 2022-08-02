@@ -7,7 +7,7 @@ on:
           default: '22.2.66'
           required: true
           type: string
-       Environment1:
+       Environment:
           type: choice
           description: env for 1.0-SNAPSHOT
           options:
@@ -36,7 +36,7 @@ jobs:
 
       - name: Download package
         run: |
-            env = echo ${{ github.event.inputs.version }}
+            env = echo ${{ github.event.inputs.Environment }}
             echo $env
             npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball
             wget $(npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball)
