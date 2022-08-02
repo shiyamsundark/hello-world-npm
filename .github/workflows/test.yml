@@ -36,7 +36,7 @@ jobs:
            fi
           echo $env
           configFolder="build.$env"
-          UIbucketName="cpq-$env.org.com
+          UIbucketName="cpq-$env.org.com"
           echo $configFolder
           echo $UIbucketName
             
