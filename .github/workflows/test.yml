@@ -2,9 +2,7 @@ name: Node
 
 on:
   workflow_dispatch:
-permissions: 
-      contents: read
-      packages: write 
+
 jobs:
   Set_Release_Version:
     runs-on: ubuntu-latest
@@ -22,6 +20,9 @@ jobs:
   build:
     needs: Set_Release_Version
     runs-on: ubuntu-latest
+    permissions: 
+      contents: read
+      packages: write 
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
     - uses: actions/checkout@v3
