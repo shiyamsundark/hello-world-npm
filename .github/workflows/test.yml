@@ -44,7 +44,7 @@ jobs:
         cp -R foldertocopy Destdirectory 
         cp package.json Destdirectory
        
-      
+    - run:  echo refs/tags/${{needs.Set_Release_Version.outputs.currentversion}} 
     - name: Create tag
       uses: actions/github-script@v5
       with:
