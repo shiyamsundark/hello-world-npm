@@ -38,6 +38,7 @@ jobs:
         run: |
             env = echo ${{ github.event.inputs.Environment }}
             echo $env
+            DynaEnc=echo $env | tr '[:lower:]' '[:upper:]'
             npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball
             wget $(npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball)
             
