@@ -58,9 +58,7 @@ jobs:
     - name: publish
       run: npm install --force
     - run: |
-          cd /home/runner/work/_temp/
-          ls -lrta
-          cat .npmrc
+          
           cd Destdirectory
           ls -lrta
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
