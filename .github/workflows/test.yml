@@ -27,18 +27,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Node Setup
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-          registry-url: https://npm.pkg.github.com/
-          scope: 2115-27
+#       - name: Node Setup
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: '16'
+#           registry-url: https://npm.pkg.github.com/
+#           scope: 2115-27
 
       - name: Download package
         run: |
             env = echo ${{ github.event.inputs.Environment }}
             echo $env
-            DynaEnc=echo $env | tr '[:lower:]' '[:upper:]'
+            DynaEnc=$(echo $env | tr '[:lower:]' '[:upper:]')
             echo $DynaEnc
             npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball
             wget $(npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball)
