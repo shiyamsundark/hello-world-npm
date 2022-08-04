@@ -30,7 +30,7 @@ jobs:
     steps:
      - name: Setting UI Bucket name 
        run: |  
-          if [ $env == wgpg ] || [ $env == aspg ]; then
+          if [[ $env == wgpg ]]; then
              UIBucketName="cpq-$dest.infy.dcx"
           else
              UIBucketName="cpq-$dest.infy.com"   
