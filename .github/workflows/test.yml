@@ -2,7 +2,11 @@ name: Node
 
 on:
   workflow_dispatch:
-
+  
+permissions:
+  contents:write
+  packages:write
+  
 jobs:
   Set_Release_Version:
     runs-on: ubuntu-latest
@@ -45,7 +49,7 @@ jobs:
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
+            ref: 'refs/tags/1.0-SNAPSHOT',
             sha: context.sha
           })
     - name: publish
@@ -57,7 +61,7 @@ jobs:
           echo ${{needs.Set_Release_Version.outputs.currentversion}}
           git config --global user.email "athulyams2000@gmail.com"
           git config --global user.name "2115-27"
-          npm version --no-git-tag-version ${{needs.Set_Release_Version.outputs.currentversion}}
+          npm version --no-git-tag-version 1.0-SNAPSHOT
           npm publish 
         
       env:
