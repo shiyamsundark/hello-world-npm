@@ -28,7 +28,14 @@ jobs:
    Deploy:
     runs-on: ubuntu-latest
     steps:
-      - run:  |
+     - name: Setting UI Bucket name 
+       run: |  
+          if [ $env == wgpg ] || [ $env == aspg ]; then
+             UIBucketName="cpq-$dest.infy.dcx"
+          else
+             UIBucketName="cpq-$dest.infy.com"   
+          fi   
+     - run:  |
           env=${{ github.event.inputs.environment }}
            if [[ $env == agt ]]; then
              env="dev-agt"
@@ -38,7 +45,6 @@ jobs:
            fi
           echo $env
           configFolder="build.$env"
-          UIbucketName="cpq-$env.org.com"
           echo $configFolder
           echo $UIbucketName
             
