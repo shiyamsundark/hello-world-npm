@@ -62,18 +62,15 @@ jobs:
             ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
             sha: context.sha
           })
-    - name: publish
-      run: npm install --force
-
-          
+   
     - name: Create Github Release
       id: create_release
       uses: actions/create-release@v1
       env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       with:
-         tag_name: ${{needs.Pre-Release.outputs.version}}
-         release_name: AppName-${{needs.Pre-Release.outputs.version}}
+         tag_name: ${{needs.Set_Release_Version.outputs.version}}
+         release_name: AppName-${{needs.Set_Release_Version.outputs.version}}
          
     - name: Upload Artifacts to Github Release
       uses: actions/upload-release-asset@v1
@@ -82,7 +79,7 @@ jobs:
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./AppName.zip
-          asset_name: cpqapps${{needs.Pre-Release.outputs.version}}.zip
+          asset_name: cpqapps${{needs.Set_Release_Version.outputs.version}}.zip
           asset_content_type: application/zip
 
     env:
