@@ -58,7 +58,7 @@ jobs:
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: 'refs/tags/1.0-SNAPSHOT',
+            ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
             sha: context.sha
           })
     - name: publish
