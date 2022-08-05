@@ -4,7 +4,7 @@ on:
     inputs: 
        version:
           description: 'Version'
-          default: '22.2.66'
+          default: '22.2.108'
           required: true
           type: string
        Environment:
@@ -29,7 +29,7 @@ jobs:
           echo $env
       - uses: actions/checkout@v3
         with:
-          ref: "${{ github.event.inputs.version }}"
+          ref: "22.2.108"
 
 #       - name: Node Setup
 #         uses: actions/setup-node@v3
