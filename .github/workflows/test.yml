@@ -80,7 +80,7 @@ jobs:
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./AppName.zip
-          asset_name: cpqapps${{needs.Set_Release_Version.outputs.currentversion}}.zip
+          asset_name: AppName${{needs.Set_Release_Version.outputs.currentversion}}.zip
           asset_content_type: application/zip
 
     env:
