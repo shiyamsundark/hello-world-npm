@@ -17,6 +17,7 @@ jobs:
     outputs:
       currentversion: ${{ steps.version.outputs.currentversion }}     
     steps:
+       - uses: actions/checkout@v2
        - id: version
          run: |
             if [[ ${{ github.event.inputs.snapshot }} == 'true' ]];then
