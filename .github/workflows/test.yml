@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-           ref: '${{ github.event.inputs.version }}'
+           ref: ${{ github.event.inputs.version }}
 
 #       - name: Node Setup
 #         uses: actions/setup-node@v3
