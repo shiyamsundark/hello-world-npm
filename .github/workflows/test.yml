@@ -3,9 +3,9 @@ name: Node
 on:
   workflow_dispatch:  
    inputs:
-    1.0-SNAPSHOT-version:
+    snapshot:
       type: boolean
-      description: choose 1.0-snapshot or A.B.C.D version
+      description: choose 1.0-snapshot as version
     
 permissions:
   contents: write
@@ -18,7 +18,7 @@ jobs:
       currentversion: ${{ steps.version.outputs.currentversion }}
     steps:
        - run: |
-            if [[ ${{ github.event.inputs.1.0-SNAPSHOT-version }} == 'true' ]];then
+            if [[ ${{ github.event.inputs.snapshot }} == 'true' ]];then
               ReleaseVersion="1.0-SNAPSHOT"
               echo "::set-output name=currentversion::$ReleaseVersion"
             else
