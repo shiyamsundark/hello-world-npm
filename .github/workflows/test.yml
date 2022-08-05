@@ -42,43 +42,56 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: '@2115-27'
     - run: echo ${{needs.Set_Release_Version.outputs.currentversion}}
-   
-#     - run:  |
-#        npm install --force
-#         pwd
-#         cd /home/runner/work/_temp/
-#         cat .npmrc 
-#     - run: |
-#         echo ${{needs.Set_Release_Version.outputs.currentversion}}
-#         npm run build --if-present
-#         ls -lrta
-#         cp -R foldertocopy Destdirectory 
-#         cp package.json Destdirectory
+    
+    - run: |
+        echo ${{needs.Set_Release_Version.outputs.currentversion}}
+        npm run build --if-present
+        ls -lrta
+        cp -R foldertocopy Destdirectory 
+        cp package.json Destdirectory
        
-#     - run:  echo refs/tags/${{needs.Set_Release_Version.outputs.currentversion}} 
-#     - name: Create tag
-#       uses: actions/github-script@v5
-#       with:
-#         script: |
-#           github.rest.git.createRef({
-#             owner: context.repo.owner,
-#             repo: context.repo.repo,
-#             ref: 'refs/tags/1.0-SNAPSHOT',
-#             sha: context.sha
-#           })
-#     - name: publish
-#       run: npm install --force
-#     - run: |
+    - run:  echo refs/tags/${{needs.Set_Release_Version.outputs.currentversion}} 
+    - name: Create tag
+      uses: actions/github-script@v5
+      with:
+        script: |
+          github.rest.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: 'refs/tags/1.0-SNAPSHOT',
+            sha: context.sha
+          })
+    - name: publish
+      run: npm install --force
+    - run: |
           
-#           cd Destdirectory
-#           ls -lrta
-#           echo ${{needs.Set_Release_Version.outputs.currentversion}}
-#           git config --global user.email "athulyams2000@gmail.com"
-#           git config --global user.name "2115-27"
-#           npm version --no-git-tag-version 1.0-SNAPSHOT
-#           npm publish 
-        
-#       env:
-#           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          cd Destdirectory
+          ls -lrta
+          echo ${{needs.Set_Release_Version.outputs.currentversion}}
+          git config --global user.email "athulyams2000@gmail.com"
+          git config --global user.name "2115-27"
+          npm version --no-git-tag-version ${{needs.Set_Release_Version.outputs.currentversion}} 
+          
+    - name: Create Github Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      with:
+         tag_name: ${{needs.Pre-Release.outputs.version}}
+         release_name: AppName-${{needs.Pre-Release.outputs.version}}
+         
+    - name: Upload Artifacts to Github Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./AppName.zip
+          asset_name: cpqapps${{needs.Pre-Release.outputs.version}}.zip
+          asset_content_type: application/zip
+
+    env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
        
