@@ -16,8 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       currentversion: ${{ steps.version.outputs.currentversion }}
+     
     steps:
-       - run: |
+       - id: version
+         run: |
             if [[ ${{ github.event.inputs.snapshot }} == 'true' ]];then
               ReleaseVersion="1.0-SNAPSHOT"
               echo "::set-output name=currentversion::$ReleaseVersion"
