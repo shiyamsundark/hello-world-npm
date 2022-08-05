@@ -15,8 +15,7 @@ jobs:
   Set_Release_Version:
     runs-on: ubuntu-latest
     outputs:
-      currentversion: ${{ steps.version.outputs.currentversion }}
-     
+      currentversion: ${{ steps.version.outputs.currentversion }}     
     steps:
        - id: version
          run: |
@@ -24,6 +23,7 @@ jobs:
               ReleaseVersion="1.0-SNAPSHOT"
               echo "::set-output name=currentversion::$ReleaseVersion"
             else
+              cat version.cfg
               echo "${{ github.run_number }}" >> version.cfg
               newversion=$(cat version.cfg | tr -d "[:space:]")
               echo $newversion is the version
