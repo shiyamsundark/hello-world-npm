@@ -1,11 +1,15 @@
 name: Node
 
 on:
-  workflow_dispatch:
-  
+  workflow_dispatch:  
+   inputs:
+    1.0-SNAPSHOT-version:
+      type: boolean
+      description: choose 1.0-snapshot or A.B.C.D version
+    
 permissions:
   contents: write
-  packages: write
+  packages: write 
   
 jobs:
   Set_Release_Version:
@@ -14,8 +18,15 @@ jobs:
       currentversion: ${{ steps.version.outputs.currentversion }}
     steps:
        - run: |
-          ReleaseVersion="1.0-SNAPSHOT"
-          echo "::set-output name=currentversion::$ReleaseVersion"
+            if [[ ${{ github.event.inputs.1.0-SNAPSHOT-version }} == 'true' ]];then
+              ReleaseVersion="1.0-SNAPSHOT"
+              echo "::set-output name=currentversion::$ReleaseVersion"
+            else
+              echo "${{ github.run_number }}" >> version.cfg
+              newversion=$(cat version.cfg | tr -d "[:space:]")
+              echo $newversion is the version
+              echo "::set-output name=currentversion::$newversion"
+            fi   
   build:
     needs: Set_Release_Version
     runs-on: ubuntu-latest
@@ -28,43 +39,44 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           # Defaults to the user or organization that owns the workflow file
           scope: '@2115-27'
-          
-    - run:  |
-       npm install --force
-        pwd
-        cd /home/runner/work/_temp/
-        cat .npmrc 
-    - run: |
-        echo ${{needs.Set_Release_Version.outputs.currentversion}}
-        npm run build --if-present
-        ls -lrta
-        cp -R foldertocopy Destdirectory 
-        cp package.json Destdirectory
+    - run: echo ${{needs.Set_Release_Version.outputs.currentversion}}
+   
+#     - run:  |
+#        npm install --force
+#         pwd
+#         cd /home/runner/work/_temp/
+#         cat .npmrc 
+#     - run: |
+#         echo ${{needs.Set_Release_Version.outputs.currentversion}}
+#         npm run build --if-present
+#         ls -lrta
+#         cp -R foldertocopy Destdirectory 
+#         cp package.json Destdirectory
        
-    - run:  echo refs/tags/${{needs.Set_Release_Version.outputs.currentversion}} 
-    - name: Create tag
-      uses: actions/github-script@v5
-      with:
-        script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'refs/tags/1.0-SNAPSHOT',
-            sha: context.sha
-          })
-    - name: publish
-      run: npm install --force
-    - run: |
+#     - run:  echo refs/tags/${{needs.Set_Release_Version.outputs.currentversion}} 
+#     - name: Create tag
+#       uses: actions/github-script@v5
+#       with:
+#         script: |
+#           github.rest.git.createRef({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             ref: 'refs/tags/1.0-SNAPSHOT',
+#             sha: context.sha
+#           })
+#     - name: publish
+#       run: npm install --force
+#     - run: |
           
-          cd Destdirectory
-          ls -lrta
-          echo ${{needs.Set_Release_Version.outputs.currentversion}}
-          git config --global user.email "athulyams2000@gmail.com"
-          git config --global user.name "2115-27"
-          npm version --no-git-tag-version 1.0-SNAPSHOT
-          npm publish 
+#           cd Destdirectory
+#           ls -lrta
+#           echo ${{needs.Set_Release_Version.outputs.currentversion}}
+#           git config --global user.email "athulyams2000@gmail.com"
+#           git config --global user.name "2115-27"
+#           npm version --no-git-tag-version 1.0-SNAPSHOT
+#           npm publish 
         
-      env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       env:
+#           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             
        
