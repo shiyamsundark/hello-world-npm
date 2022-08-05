@@ -24,8 +24,9 @@ jobs:
       packages: read 
       id-token: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+           ref: '${{ github.event.inputs.version }}'
 
 #       - name: Node Setup
 #         uses: actions/setup-node@v3
@@ -34,15 +35,15 @@ jobs:
 #           registry-url: https://npm.pkg.github.com/
 #           scope: 2115-27
 
-      - name: Download package
-        run: |
-            env = echo ${{ github.event.inputs.Environment }}
-            echo $env
-            DynaEnc=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
-            echo $DynaEnc
-            npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball
-            wget $(npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball)
+#       - name: Download package
+#         run: |
+#             env = echo ${{ github.event.inputs.Environment }}
+#             echo $env
+#             DynaEnc=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
+#             echo $DynaEnc
+#             npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball
+#             wget $(npm view @2115-27/hello-world-npm-pkg@22.2.108 dist.tarball)
             
-            ls -lrta
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GHB_TOKEN }}  
+#             ls -lrta
+#         env:
+#           NODE_AUTH_TOKEN: ${{ secrets.GHB_TOKEN }}  
