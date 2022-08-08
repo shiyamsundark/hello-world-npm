@@ -33,7 +33,8 @@ jobs:
           echo ${{ github.run_number }} is the build number
           CompName="dcx-cpq-ui"
           echo "::set-output name=Component_Name::$CompName"
-          
+          GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA/checks?check_suite_id=$GITHUB_CHECK_SUITE_ID
+          echo check if $GITHUB_WORKFLOW_URL is the parent job url
   DeploymentVersionUpdator:
       name: Version updator
       needs: buildnumber
