@@ -39,8 +39,7 @@ jobs:
       uses: ./.github/workflows/deployment-version-updator.yml
       with:
        environment: ${{ github.event.inputs.environment }}   
-      secrets:
-       Component_Name: ${{ secrets.Component_Name }}
+       Component_Name: dcx-cpq-ui
        
 #        PARENT_JOB_ID: ${{ github.run_number }}
 #        VERSION: ${{ github.event.inputs.version }}
