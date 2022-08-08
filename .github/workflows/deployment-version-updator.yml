@@ -1,6 +1,13 @@
 name: Version_Updator
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+    secrets:
+      Component_Name:
+        required: true
 jobs:
    VersionUpdation: 
     runs-on: ubuntu-latest
