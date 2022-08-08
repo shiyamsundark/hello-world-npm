@@ -39,7 +39,9 @@ jobs:
       uses: ./.github/workflows/deployment-version-updator.yml
       with:
        environment: ${{ github.event.inputs.environment }}   
-       Component_Name: ${{needs.buildnumber.outputs.Component_Name}}
+      secrets:
+       Component_Name: ${{ secrets.Component_Name }}
+       
 #        PARENT_JOB_ID: ${{ github.run_number }}
 #        VERSION: ${{ github.event.inputs.version }}
        
