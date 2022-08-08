@@ -40,6 +40,7 @@ jobs:
       with:
        environment: ${{ github.event.inputs.environment }}   
        CompName: dcx-cpq-ui
+       ParentJobName : ${{ github.workflow }}
        
 #        PARENT_JOB_ID: ${{ github.run_number }}
 #        VERSION: ${{ github.event.inputs.version }}
