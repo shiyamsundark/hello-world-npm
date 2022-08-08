@@ -16,5 +16,6 @@ jobs:
       - run: |
           ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
           echo $ENV is the environment
-          echo $CompName is the component name
+          ComponentName=${{ inputs.CompName }}
+          echo $ComponentName is the component name
 
