@@ -7,7 +7,7 @@ on:
         description: 'Version'
         default: '1.0-SNAPSHOT'
         required: true
-        type: string       
+        type: string          
        environment:
         required: true
         type: choice
@@ -21,6 +21,7 @@ on:
         - test
         - stg
         - hotfix 
+        
 jobs:
   buildnumber:
     runs-on: ubuntu-latest
@@ -41,6 +42,7 @@ jobs:
        environment: ${{ github.event.inputs.environment }}   
        CompName: dcx-cpq-ui
        ParentJobName: ${{ github.workflow }}
+       ParentJobId: ${{ github.run_number }}
        
 #        PARENT_JOB_ID: ${{ github.run_number }}
 #        VERSION: ${{ github.event.inputs.version }}
