@@ -14,7 +14,10 @@ on:
       ParentJobId: 
         required: true
         type: string
- 
+      GITHUB_WORKFLOW_URL:
+        required: true
+        type: string
+        
 jobs:
    VersionUpdation: 
     runs-on: ubuntu-latest
@@ -25,6 +28,9 @@ jobs:
           ComponentName=${{ inputs.CompName }}
           ParentJobName=${{ inputs.ParentJobName }}
           ParentJobId=${{ inputs.ParentJobId }}
+          GITHUB_WORKFLOW_URL=${{ inputs.GITHUB_WORKFLOW_URL }}
+          
+          echo $GITHUB_WORKFLOW_URL is the parent job url
           echo $ParentJobId is the parent job id
           echo $ParentJobName is the parent job name
           echo $ComponentName is the component name
