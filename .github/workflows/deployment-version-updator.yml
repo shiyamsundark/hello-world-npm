@@ -11,6 +11,9 @@ on:
       ParentJobName:
         required: true
         type: string
+      ParentJobId: 
+        required: true
+        type: string
  
 jobs:
    VersionUpdation: 
@@ -21,6 +24,8 @@ jobs:
           echo $ENV is the environment
           ComponentName=${{ inputs.CompName }}
           ParentJobName=${{ inputs.ParentJobName }}
+          ParentJobId=${{ inputs.ParentJobId }}
+          echo $ParentJobId is the parent job id
           echo $ParentJobName is the parent job name
           echo $ComponentName is the component name
 
