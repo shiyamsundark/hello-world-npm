@@ -24,16 +24,22 @@ on:
 jobs:
   buildnumber:
     runs-on: ubuntu-latest
+    outputs:
+      Component_Name: ${{ steps.CompId.outputs.Component_Name }}
     steps:
-      -  run: echo ${{ github.run_number }} is the build number
-       
+      - id: CompId  
+        run: |
+          echo ${{ github.run_number }} is the build number
+          CompName="dcx-cpq-ui"
+          echo "::set-output name=Component_Name::$CompName"
+          
   DeploymentVersionUpdator:
       name: Version updator
       needs: buildnumber
       uses: ./.github/workflows/deployment-version-updator.yml
       with:
        environment: ${{ github.event.inputs.environment }}   
-       COMPONENT_NAME: dcx-cpq-ui
-       PARENT_JOB_ID: ${{ github.run_number }}
-       VERSION: ${{ github.event.inputs.version }}
+       Component_Name: ${{needs.buildnumber.outputs.Component_Name}}
+#        PARENT_JOB_ID: ${{ github.run_number }}
+#        VERSION: ${{ github.event.inputs.version }}
        
