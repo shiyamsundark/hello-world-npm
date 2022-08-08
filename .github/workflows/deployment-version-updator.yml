@@ -5,9 +5,10 @@ on:
       environment:
         required: true
         type: string
-    secrets:
       Component_Name:
         required: true
+        type: string    
+ 
 jobs:
    VersionUpdation: 
     runs-on: ubuntu-latest
