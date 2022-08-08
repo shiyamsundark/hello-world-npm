@@ -5,7 +5,7 @@ on:
       environment:
         required: true
         type: string
-      Component_Name:
+      CompName:
         required: true
         type: string    
  
@@ -16,5 +16,5 @@ jobs:
       - run: |
           ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
           echo $ENV is the environment
-          echo $Component_Name is the component name
+          echo $CompName is the component name
 
