@@ -2,25 +2,25 @@ name: TestDeploy
 
 on:
   workflow_dispatch:
-   inputs: 
-     version:
-      description: 'Version'
-      default: '1.0-SNAPSHOT'
-      required: true
-      type: string       
-     environment:
-      required: true
-      type: choice
-      description: environment
-      options: 
-      - pg
-      - wgpg
-      - aspg
-      - agt
-      - dev
-      - test
-      - stg
-      - hotfix 
+     inputs: 
+       version:
+        description: 'Version'
+        default: '1.0-SNAPSHOT'
+        required: true
+        type: string       
+       environment:
+        required: true
+        type: choice
+        description: environment
+        options: 
+        - pg
+        - wgpg
+        - aspg
+        - agt
+        - dev
+        - test
+        - stg
+        - hotfix 
 jobs:
   buildnumber:
     runs-on: ubuntu-latest
