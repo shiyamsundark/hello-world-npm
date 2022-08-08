@@ -8,6 +8,5 @@ jobs:
       - run: |
           ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
           echo $ENV is the environment
-          echo $COMPONENT_NAME is the component name
-          echo $PARENT_JOB_ID is the parent job id
-          echo $VERSION is the version
+          echo $Component_Name is the component name
+
