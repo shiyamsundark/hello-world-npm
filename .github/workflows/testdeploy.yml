@@ -22,12 +22,12 @@ on:
       - stg
       - hotfix 
 jobs:
-  Set_Release_Version:
+  buildnumber:
     runs-on: ubuntu-latest
     steps:
-      -  run: echo test job
+      -  run: echo ${{ github.run_number }} is the build number
        
- DeploymentVersionUpdator:
+  DeploymentVersionUpdator:
       name: Version updator
       needs: buildnumber
       uses: ./.github/workflows/deployment-version-updator.yml
