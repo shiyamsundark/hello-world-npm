@@ -2,7 +2,7 @@ name: TestDeploy
 
 on:
   workflow_dispatch:
-  inputs: 
+   inputs: 
      version:
       description: 'Version'
       default: '1.0-SNAPSHOT'
