@@ -1,0 +1,13 @@
+name: Version_Updator
+on:
+  workflow_call:
+jobs:
+   VersionUpdation: 
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
+          echo $ENV is the environment
+          echo $COMPONENT_NAME is the component name
+          echo $PARENT_JOB_ID is the parent job id
+          echo $VERSION is the version
