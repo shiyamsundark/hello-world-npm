@@ -1,0 +1,39 @@
+name: TestDeploy
+
+on:
+  workflow_dispatch:
+  inputs: 
+     version:
+      description: 'Version'
+      default: '1.0-SNAPSHOT'
+      required: true
+      type: string       
+     environment:
+      required: true
+      type: choice
+      description: environment
+      options: 
+      - pg
+      - wgpg
+      - aspg
+      - agt
+      - dev
+      - test
+      - stg
+      - hotfix 
+jobs:
+  Set_Release_Version:
+    runs-on: ubuntu-latest
+    steps:
+      -  run: echo test job
+       
+ DeploymentVersionUpdator:
+      name: Version updator
+      needs: buildnumber
+      uses: ./.github/workflows/deployment-version-updator.yml
+      with:
+       environment: ${{ github.event.inputs.environment }}   
+       COMPONENT_NAME: dcx-cpq-ui
+       PARENT_JOB_ID: ${{ github.run_number }}
+       VERSION: ${{ github.event.inputs.version }}
+       
