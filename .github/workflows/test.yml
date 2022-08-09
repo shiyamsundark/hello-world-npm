@@ -53,16 +53,17 @@ jobs:
         7z a AppName.zip ./Destdirectory
        
     - run:  echo refs/tags/${{needs.Set_Release_Version.outputs.currentversion}} 
-    - name: Create tag
-      uses: actions/github-script@v5
-      with:
-        script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
-            sha: context.sha
-          })
+    
+#     - name: Create tag
+#       uses: actions/github-script@v5
+#       with:
+#         script: |
+#           github.rest.git.createRef({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             ref: 'refs/tags/${{needs.Set_Release_Version.outputs.currentversion}}',
+#             sha: context.sha
+#           })
    
     - name: Create Github Release
       id: create_release
