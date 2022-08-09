@@ -46,7 +46,7 @@ jobs:
           ls -lrta
       
       -  name: Sub Workflow
-         uses: ./deployment-version-updator.yml
+         uses: ./action.yml
          with:
           environment: ${{ github.event.inputs.environment }}   
           CompName: dcx-cpq-ui
