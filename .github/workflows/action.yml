@@ -1,0 +1,36 @@
+name: Version_Updator
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+      CompName:
+        required: true
+        type: string  
+      ParentJobName:
+        required: true
+        type: string
+      ParentJobId: 
+        required: true
+        type: string
+      GITHUB_WORKFLOW_URL:
+        required: true
+        type: string
+        
+jobs:
+   VersionUpdation: 
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
+          echo $ENV is the environment
+          ComponentName=${{ inputs.CompName }}
+          ParentJobName=${{ inputs.ParentJobName }}
+          ParentJobId=${{ inputs.ParentJobId }}
+          GITHUB_WORKFLOW_URL=${{ inputs.GITHUB_WORKFLOW_URL }}
+          
+          echo $GITHUB_WORKFLOW_URL is the parent job url
+          echo $ParentJobId is the parent job id
+          echo $ParentJobName is the parent job name
+          echo $ComponentName is the component name
