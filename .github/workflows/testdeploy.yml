@@ -36,7 +36,8 @@ jobs:
           GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA/checks?check_suite_id=$GITHUB_CHECK_SUITE_ID
           echo check if $GITHUB_WORKFLOW_URL is the parent job url
   
-      -  uses: ./.github/workflows/deployment-version-updator.yml
+      -  name: Sub Workflow
+         uses: ./.github/workflows/deployment-version-updator.yml
          with:
           environment: ${{ github.event.inputs.environment }}   
           CompName: dcx-cpq-ui
