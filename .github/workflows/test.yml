@@ -25,13 +25,18 @@ jobs:
               echo "::set-output name=currentversion::$ReleaseVersion"
             else
               cat version.cfg
-              echo "${{ github.run_number }}" >> versio.cfg
-              newversion=$(cat versio.cfg | tr -d "[:space:]")
+              echo "${{ github.run_number }}" >> version.cfg
+              newversion=$(cat version.cfg | tr -d "[:space:]")
               echo $newversion is the version
               echo "::set-output name=currentversion::$newversion"
             fi   
-  build:
+  test:
     needs: Set_Release_Version
+    runs-on: ubuntu-latest
+    steps: 
+      - run: cd Destdirectory/
+  build:
+    needs: [Set_Release_Version,test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
