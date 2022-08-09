@@ -41,12 +41,10 @@ jobs:
       - run: |
           ls -lrta
           pwd
-          cd .github/workflows/
-          echo ---inside .github/workflows/ ------
-          ls -lrta
+          
       
       -  name: Sub Workflow
-         uses: ./action.yml
+         uses: ./.github/workflows/action.yml
          with:
           environment: ${{ github.event.inputs.environment }}   
           CompName: dcx-cpq-ui
