@@ -37,9 +37,10 @@ jobs:
           echo check if $GITHUB_WORKFLOW_URL is the parent job url
      
       - uses: actions/checkout@v2
+      - run: ls -lrta
       
       -  name: Sub Workflow
-         uses: ./.github/workflows/deployment-version-updator.yml
+         uses: ./deployment-version-updator.yml
          with:
           environment: ${{ github.event.inputs.environment }}   
           CompName: dcx-cpq-ui
