@@ -26,7 +26,8 @@ jobs:
    VersionUpdation: 
     runs-on: ubuntu-latest
     steps:
-      - env:
+      - name: test
+        env:
             FORTIFY_SSC_AUTH_TOKEN: ${{ secrets.FORTIFY_TOKEN }}
       - run: |
           
