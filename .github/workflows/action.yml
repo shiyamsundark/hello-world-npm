@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: test
         env:
-            FORTIFY_SSC_AUTH_TOKEN: ${{ secrets.FORTIFY_TOKEN }}
+            TEST_SECRET_NEW: ${{ secrets.TEST_SECRET_NEW }}
         run: |
           
           ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
