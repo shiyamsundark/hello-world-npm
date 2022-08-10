@@ -1,22 +1,22 @@
 name: Version_Updator
 on:
   workflow_call:
-    inputs:
-      environment:
-        required: true
-        type: string
-      CompName:
-        required: true
-        type: string  
-      ParentJobName:
-        required: true
-        type: string
-      ParentJobId: 
-        required: true
-        type: string
-      GITHUB_WORKFLOW_URL:
-        required: true
-        type: string
+#     inputs:
+#       environment:
+#         required: true
+#         type: string
+#       CompName:
+#         required: true
+#         type: string  
+#       ParentJobName:
+#         required: true
+#         type: string
+#       ParentJobId: 
+#         required: true
+#         type: string
+#       GITHUB_WORKFLOW_URL:
+#         required: true
+#         type: string
         
     secrets:
       TEST_SECRET_NEW:
