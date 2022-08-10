@@ -29,7 +29,7 @@ jobs:
       - name: test
         env:
             FORTIFY_SSC_AUTH_TOKEN: ${{ secrets.FORTIFY_TOKEN }}
-      - run: |
+        run: |
           
           ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
           echo $ENV is the environment
