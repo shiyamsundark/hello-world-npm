@@ -18,11 +18,18 @@ on:
         required: true
         type: string
         
+    secrets:
+      TEST_SECRET_NEW:
+        required: true 
+  
 jobs:
    VersionUpdation: 
     runs-on: ubuntu-latest
     steps:
+      - env:
+            FORTIFY_SSC_AUTH_TOKEN: ${{ secrets.FORTIFY_TOKEN }}
       - run: |
+          
           ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:lower:]' '[:upper:]')
           echo $ENV is the environment
           ComponentName=${{ inputs.CompName }}
