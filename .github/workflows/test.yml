@@ -2,6 +2,9 @@ name: Node
 
 on:
   workflow_dispatch:
+   
+env: 
+   TEST_SECRET_NEW: ${{ secrets.TEST_SECRET_NEW }}
 
 jobs:
   Set_Release_Version:
@@ -17,11 +20,17 @@ jobs:
           newversion=$(cat version.cfg | tr -d "[:space:]")
           echo $newversion is the version
           echo "::set-output name=currentversion::$newversion"
-  buildnumber:
-    needs: Set_Release_Version
-    runs-on: ubuntu-latest
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    steps:
-      - run: echo ${{ github.run_number }} is the build number
+#   buildnumber:
+#     needs: Set_Release_Version
+#     runs-on: ubuntu-latest
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+#     steps:
+#       - run: echo ${{ github.run_number }} is the build number
+  Test:
+        name: Test
+        needs: Set_Release_Version 
+        uses: ./.github/workflows/action.yml 
+        secrets:
+          TEST_SECRET_NEW: ${{ secrets.TEST_SECRET_NEW }}    
       
 
