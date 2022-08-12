@@ -67,7 +67,7 @@ jobs:
 #           })
     - name: Deleting existing Snapshot version
       run: | 
-            if [ ${{ github.event.inputs.snapshot == 'true' }} ];then
+            if [ ${{ github.event.inputs.snapshot }} == 'true' ];then
               gh release list >> release.txt
               ls -lrta
               echo ---------------List of github releases stored in release.txt file---------
