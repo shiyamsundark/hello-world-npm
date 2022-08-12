@@ -76,12 +76,13 @@ jobs:
               snapversion=$(grep -i "^AppName-1.0-SNAPSHOT" release.txt | { grep -v grep || true; })
               echo $snapversion
               if [ -z "$snapversion" ];then
-                echo "Skipping deletion since 1.0-SNAPSHOT version doesn't exist already"              
+                echo "Skipping deletion since 1.0-SNAPSHOT version doesn't exist"              
               else
                 gh release delete 1.0-SNAPSHOT
+                echo "Deleting existing 1.0-SNAPSHOT version"
               fi  
             else
-              echo "Skipping since 1.0-SNAPSHOT is not the version"
+              echo "Skipping since 1.0-SNAPSHOT is not choosed as version"
             fi  
            
       env:
