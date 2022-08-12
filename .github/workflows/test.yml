@@ -3,9 +3,9 @@ name: Node
 on:
   workflow_dispatch:  
    inputs:
-    snapshot:
+    version:
       type: boolean
-      description: choose 1.0-snapshot as version
+      description: choose 1.0-SNAPSHOT as version
     
 permissions:
   contents: write
@@ -67,17 +67,18 @@ jobs:
 #           })
     - name: Deleting existing Snapshot version
       run: | 
-            if [ ${{ github.event.inputs.snapshot }} == 'true' ];then
+            if [ ${{ github.event.inputs.version }} == 'true' ];then
               gh release list >> release.txt
               ls -lrta
               echo ---------------List of github releases stored in release.txt file---------
               cat release.txt
               echo -------------checks for snapshot version and deleting if it exists----------------------------
               snapversion=$(grep -i "^AppName-1.0-SNAPSHOT" release.txt | { grep -v grep || true; })
-              echo $snapversion
+               
               if [ -z "$snapversion" ];then
                 echo "Skipping deletion since 1.0-SNAPSHOT version doesn't exist"              
               else
+                echo $snapversion exists
                 gh release delete 1.0-SNAPSHOT
                 echo "Deleting existing 1.0-SNAPSHOT version"
               fi  
