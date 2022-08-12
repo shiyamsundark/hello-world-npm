@@ -67,17 +67,21 @@ jobs:
 #           })
     - name: Deleting existing Snapshot version
       run: | 
-            gh release list >> release.txt
-            ls -lrta
-            echo ---------------List of github releases stored in release.txt file---------
-            cat release.txt
-            echo -------------checks for snapshot version and deleting if it exists----------------------------
-            snapversion=$(grep -i "^AppName-1.0-SNAPSHOT" release.txt | { grep -v grep || true; })
-            echo $snapversion
-            if [ -z "$snapversion" ];then
-              echo "Skipping deletion since 1.0-SNAPSHOT version doesn't exist already"              
+            if [ ${{ github.event.inputs.snapshot == 'true' }} ];then
+              gh release list >> release.txt
+              ls -lrta
+              echo ---------------List of github releases stored in release.txt file---------
+              cat release.txt
+              echo -------------checks for snapshot version and deleting if it exists----------------------------
+              snapversion=$(grep -i "^AppName-1.0-SNAPSHOT" release.txt | { grep -v grep || true; })
+              echo $snapversion
+              if [ -z "$snapversion" ];then
+                echo "Skipping deletion since 1.0-SNAPSHOT version doesn't exist already"              
+              else
+                gh release delete 1.0-SNAPSHOT
+              fi  
             else
-              gh release delete 1.0-SNAPSHOT
+              echo "Skipping since 1.0-SNAPSHOT is not the version"
             fi  
            
       env:
