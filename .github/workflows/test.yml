@@ -1,52 +1,12 @@
 name: Node
 
 on:
-  workflow_dispatch:
-      inputs: 
-       version:
-        description: 'Version'
-        default: '1.0-SNAPSHOT'
-        required: true
-        type: string
-       environment:
-        type: choice
-        description: environment
-        options: 
-        - pg
-        - wgpg
-        - aspg
-        - agt
-        - dev
-        - test
-        - stg
-        - hotfix
-permissions:
-      contents: read
-      packages: read 
-      
+  workflow_dispatch: 
 jobs:        
    Deploy:
     runs-on: ubuntu-latest
     steps:
-     - name: Setting UI Bucket name 
+     - name: deploy 
        run: |  
-          if [ $env == wgpg ] || [ $env == aspg ]; then
-             UIBucketName='cpq-$dest.infy.dcx'
-          else
-             UIBucketName='cpq-$dest.infy.com'
-             echo $UIBucketName
-          fi   
-     - run:  |
-          env=${{ github.event.inputs.environment }}
-           if [[ $env == agt ]]; then
-             env="dev-agt"
-             dest="$env"
-             echo $dest
-             echo $env
-           fi
-          echo $env
-          configFolder="build.$env"
-          echo $configFolder
-          echo $UIBucketName
-            
+         echo deploy!
        
