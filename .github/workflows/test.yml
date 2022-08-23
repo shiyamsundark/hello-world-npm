@@ -8,5 +8,5 @@ jobs:
     steps:
      - name: deploy 
        run: |  
-         echo deploy from development!
+         echo deploy from release!
        
