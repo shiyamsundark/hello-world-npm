@@ -28,6 +28,6 @@ jobs:
             with:
               node-version: '16'   
           - run: |
-              echo ${GITHUB_REF##*/}
+              echo ${GITHUB_REF_NAME}
               echo ${{needs.Set_Release_Version.outputs.currentversion}}
        
