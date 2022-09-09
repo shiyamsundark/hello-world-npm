@@ -16,16 +16,15 @@ jobs:
              firsturl="newvalueoffirsturl"
              secondurl="newvalue2"
              thirdurl="newvalue3"
+             
              echo $firsturl
              echo $secondurl
              echo $thirdurl
              
-             cp test-app-config.json tmpfile
-             echo --content of tmpfile-----
-             cat tmpfile
-             jq -n --arg firsturl "$firsturl" --arg secondurl "$secondurl" --arg thirdurl "$thirdurl"  '.firsturl=$firsturl | .secondurl=$secondurl | .thirdurl=$thirdurl' "$tmpfile" >test-app-config.json 
-             echo --content of tmpfile after parsing-----
-             cat tmpfile
+             mv test-app-config.json temp.json
+             jq -r '.firsturl |= "adar"' temp.json > package.json
+             rm temp.json
              echo -------file content after parsing-------
-             cat test-app-config.json
+             cat test-app-config.json 
+           
       
