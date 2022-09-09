@@ -21,8 +21,10 @@ jobs:
              echo $secondurl
              echo $thirdurl
              
+             address="abcde"
+             age="22"
              tmp=$(mktemp) 
-             jq '.address = "abcde" | .age = "22"' UIdeployment/appname/app-confg/test.json > "$tmp" && mv "$tmp" UIdeployment/appname/app-confg/test.json
+             jq '.address = "$address" | .age = "$age"' UIdeployment/appname/app-confg/test.json > "$tmp" && mv "$tmp" UIdeployment/appname/app-confg/test.json
              cat UIdeployment/appname/app-confg/test.json
            
       
