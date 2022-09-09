@@ -19,12 +19,13 @@ jobs:
              echo $firsturl
              echo $secondurl
              echo $thirdurl
-             tmpfile=$(mktemp)
-             cp test-app-config.json "$tmpfile"
-             echo --content of mktemp-----
-             cat "$tmpfile"
+             
+             cp test-app-config.json tmpfile
+             echo --content of tmpfile-----
+             cat tmpfile
              jq -n --arg firsturl "$firsturl" --arg secondurl "$secondurl" --arg thirdurl "$thirdurl"  '.firsturl=$firsturl | .secondurl=$secondurl | .thirdurl=$thirdurl' "$tmpfile" >test-app-config.json 
-           
+             echo --content of tmpfile after parsing-----
+             cat tmpfile
              echo -------file content after parsing-------
              cat test-app-config.json
       
