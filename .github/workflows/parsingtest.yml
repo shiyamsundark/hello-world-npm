@@ -24,7 +24,7 @@ jobs:
              address="abcde"
              age="22"
              tmp=$(mktemp) 
-             jq '.address = "$address" | .age = "$age"' UIdeployment/appname/app-confg/test.json > "$tmp" && mv "$tmp" UIdeployment/appname/app-confg/test.json
+             jq --arg address "$address" --arg age "$age" '.address = "$address" | .age = "$age"' UIdeployment/appname/app-confg/test.json > "$tmp" && mv "$tmp" UIdeployment/appname/app-confg/test.json
              cat UIdeployment/appname/app-confg/test.json
            
       
