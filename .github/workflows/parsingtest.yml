@@ -21,7 +21,8 @@ jobs:
              echo $secondurl
              echo $thirdurl
              
-             tmp=$(mktemp) | jq '.address = "abcde"' test.json > "$tmp" && mv "$tmp" test.json
+             tmp=$(mktemp) 
+             jq '.address = "abcde" | .age = "22"' test.json > "$tmp" && mv "$tmp" test.json
              cat test.json
            
       
