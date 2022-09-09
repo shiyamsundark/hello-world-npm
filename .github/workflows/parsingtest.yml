@@ -1,9 +1,9 @@
-name: parsing_test
+name: parsingtest
 on:
   workflow_dispatch:
 
 jobs:
-  Test:
+  parsing:
     runs-on: ubuntu-latest 
       
     steps:
