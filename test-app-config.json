@@ -1,0 +1,9 @@
+{
+  "production": true,
+  "firsturl": value/offirsturl,
+  "secondurl": value/ofsecondurl,
+  "keyone": keyvalue,
+  "thirdurl": value/ofthirdurl,
+  "keytwo": keytwovalue,
+  "keythree": keythreevalue,
+} 
