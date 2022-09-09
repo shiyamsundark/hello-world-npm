@@ -13,9 +13,9 @@ jobs:
            ref: ${{ github.head_ref }}
        -  run: |
              ls -lrta
-             firsturl=newvalueoffirsturl
-             secondurl=newvalue2
-             thirdurl=newvalue3
+             firsturl="newvalueoffirsturl"
+             secondurl="newvalue2"
+             thirdurl="newvalue3"
              echo $firsturl
              echo $secondurl
              echo $thirdurl
