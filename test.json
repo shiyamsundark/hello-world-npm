@@ -1,5 +1,5 @@
 {
-   name: 'abcd',
-   age: 30,
-   address: 'abc'
+   "name": "abcd",
+   "age": "30",
+   "address": "abc"
 }
