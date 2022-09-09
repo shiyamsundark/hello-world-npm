@@ -21,10 +21,8 @@ jobs:
              echo $secondurl
              echo $thirdurl
              
-             mv test-app-config.json temp.json
-             jq -r '.firsturl= "adar"' temp.json > test-app-config.json
-             rm temp.json
-             echo -------file content after parsing-------
-             cat test-app-config.json 
+             tmp=$(mktemp)
+             jq '.address = "abcde"' test.json > "$tmp" && mv "$tmp" test.json
+             cat test.json
            
       
