@@ -22,7 +22,7 @@ jobs:
              echo $thirdurl
              
              tmp=$(mktemp) 
-             jq '.address = "abcde" | .age = "22"' test.json > "$tmp" && mv "$tmp" test.json
+             jq '.address = "abcde" | .age = "22"' UIdeployment/appname/app-confg/test.json > "$tmp" && mv "$tmp" UIdeployment/appname/app-confg/test.json
              cat test.json
            
       
