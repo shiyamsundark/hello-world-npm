@@ -22,7 +22,7 @@ jobs:
              echo $thirdurl
              
              mv test-app-config.json temp.json
-             jq -r '.firsturl |= "adar"' temp.json > test-app-config.json
+             jq -r '.firsturl= "adar"' temp.json > test-app-config.json
              rm temp.json
              echo -------file content after parsing-------
              cat test-app-config.json 
