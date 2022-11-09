@@ -6,7 +6,7 @@
 
 import 'zone.js';  // Included with Angular CLI.
 
-
+// ts inside src
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
