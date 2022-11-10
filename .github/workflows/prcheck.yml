@@ -7,7 +7,7 @@ on:
 jobs:
   viewpr:
     runs-on: ubuntu-latest
-     steps:
+    steps:
       - name: view contents
         run: |
           gh pr view
