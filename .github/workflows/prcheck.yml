@@ -13,9 +13,14 @@ jobs:
         run: |
           PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
           gh pr view $PR_NUMBER >> comments.txt 
-          echo ----comments.txt--------
-          cat comments.txt
-          task=$(grep "AB#" comments.txt)
+          task=$(grep -w "AB#" comments.txt)
           echo $task 
+          if [[ $task = ^AB#.*[0-9]$ ]];then
+            echo valid number
+            exit 0
+          else
+            echo invalid number
+            exit 1
+          fi  
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
