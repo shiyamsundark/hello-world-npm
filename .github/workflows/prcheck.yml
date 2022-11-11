@@ -8,6 +8,14 @@ jobs:
   viewpr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3 
       - name: view contents
         run: |
-          gh pr view
+          PR_NUMBER=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+          gh pr view $PR_NUMBER >> comments.txt 
+          echo ----comments.txt--------
+          cat comments.txt
+          task=$(grep "AB#" comments.txt)
+          echo $task 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
