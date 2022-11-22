@@ -10,8 +10,9 @@ jobs:
       - run: | 
           $Env="CAP"
           echo $Env 
-          $sourceBucket="$("dcx-abc-configit-model-${Env}".ToLower())"
           echo $sourceBucket
+          $sourceBucket="$("dcx-abc-configit-model-${Env}".ToLower())"
+          
           echo "$sourceBucket is in lowercase"
   
 
