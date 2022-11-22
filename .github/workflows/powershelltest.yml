@@ -7,10 +7,11 @@ jobs:
     runs-on: windows-latest
     steps: 
 
-      - run: 
+      - run: | 
           $Env="CAP"
-          $env = "$($Env.ToLower())"
-      - run:  echo "$env is lowercase of CAP"
+          $env="$($Env.ToLower())"
+      - run: |
+          echo "$env is lowercase of CAP"
 
 #       - uses: actions/checkout@v3
       
