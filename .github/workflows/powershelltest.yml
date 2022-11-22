@@ -9,9 +9,7 @@ jobs:
 
       - run: 
           $Env="CAP"
-          echo "$Env is CAP"
-          $env=($Env).ToLower()
-         
+          $env = "$($Env.ToLower())"
       - run:  echo "$env is lowercase of CAP"
 
 #       - uses: actions/checkout@v3
