@@ -10,8 +10,9 @@ jobs:
       - run: | 
           $Env="CAP"
           echo $Env 
-          $env="$($Env.ToLower())"
-          echo "$env is lowercase of CAP"
+          $sourceBucket="$("dcx-abc-configit-model-${Env}".ToLower())"
+          echo $sourceBucket
+          echo "$sourceBucket is in lowercase"
   
 
 #       - uses: actions/checkout@v3
