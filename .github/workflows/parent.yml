@@ -23,7 +23,5 @@ jobs:
        uses: ./.github/workflows/child.yml
        with: 
           Version: ${{ needs.Set_ReleaseVersion_Variable.outputs.Version }}
-          Brand: ${{ github.event.inputs.Brand }}
-          Environment: ${{ needs.Set_ReleaseVersion_Variable.outputs.Env }}
-          PriceListId: ${{ github.event.inputs.PriceListId }}
+         
          
