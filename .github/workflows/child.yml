@@ -6,11 +6,10 @@ on:
      Version:
           type: string
 jobs: 
-
   Test: 
     runs-on: ubuntu-latest
     steps:
      - name: Display Release_Version and Environment
-        run: |
+       run: |
               echo "Version = ${{ github.event.inputs.Version }}"
               echo "Environment = ${{ github.event.inputs.Environment }}"
