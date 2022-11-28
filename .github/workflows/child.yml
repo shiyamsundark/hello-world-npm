@@ -1,0 +1,16 @@
+name: Child
+
+on:
+  workflow_call:
+   inputs:
+     Version:
+          type: string
+jobs: 
+
+  Test: 
+    runs-on: ubuntu-latest
+    steps:
+     - name: Display Release_Version and Environment
+        run: |
+              echo "Version = ${{ github.event.inputs.Version }}"
+              echo "Environment = ${{ github.event.inputs.Environment }}"
