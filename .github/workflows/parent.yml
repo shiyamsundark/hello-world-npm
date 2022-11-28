@@ -1,0 +1,29 @@
+name: Parentworkflow
+on:
+  workflow_dispatch:
+   jobs:
+   
+     Set_ReleaseVersion_Variable: 
+      runs-on: ubuntu-latest
+      outputs:
+        Version: ${{ steps.versionid.outputs.Version }}
+
+      steps:
+        - id: versionid
+          run: | 
+               echo setting release version!!
+               newversion="23.01.0.147"
+               echo $newversion is the version
+               echo "Version=$newversion" >> $GITHUB_OUTPUT
+        - run: echo ${{ needs.Set_ReleaseVersion_Variable.outputs.Version }}  
+     
+     Child:
+ 
+       needs: [Set_ReleaseVersion_Variable]         
+       uses: ./.github/workflows/child.yml
+       with: 
+          Version: ${{ needs.Set_ReleaseVersion_Variable.outputs.Version }}
+          Brand: ${{ github.event.inputs.Brand }}
+          Environment: ${{ needs.Set_ReleaseVersion_Variable.outputs.Env }}
+          PriceListId: ${{ github.event.inputs.PriceListId }}
+         
