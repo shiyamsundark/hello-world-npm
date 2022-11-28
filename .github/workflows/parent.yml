@@ -17,7 +17,7 @@ jobs:
                echo "Version=$newversion" >> $GITHUB_OUTPUT
      TestJob: 
       runs-on: ubuntu-latest
-
+      needs: [Set_ReleaseVersion_Variable]
       steps:   
         - run: echo ${{ needs.Set_ReleaseVersion_Variable.outputs.Version }}  
      
