@@ -15,6 +15,10 @@ jobs:
                newversion="23.01.0.147"
                echo $newversion is the version
                echo "Version=$newversion" >> $GITHUB_OUTPUT
+     TestJob: 
+      runs-on: ubuntu-latest
+
+      steps:   
         - run: echo ${{ needs.Set_ReleaseVersion_Variable.outputs.Version }}  
      
      Child:
