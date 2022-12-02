@@ -10,13 +10,13 @@ jobs:
           ls
           
          
-      - run: | 
-          $Env="CAP"
-          echo $Env 
-          echo $sourceBucket
-          $sourceBucket="$("dcx-abc-configit-model-${Env}".ToLower())"
+#       - run: | 
+#           $Env="CAP"
+#           echo $Env 
+#           echo $sourceBucket
+#           $sourceBucket="$("dcx-abc-configit-model-${Env}".ToLower())"
           
-          echo "$sourceBucket is in lowercase"
+#           echo "$sourceBucket is in lowercase"
   
 
 #       - uses: actions/checkout@v3
