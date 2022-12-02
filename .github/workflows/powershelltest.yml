@@ -6,7 +6,10 @@ jobs:
   Upload:
     runs-on: windows-latest
     steps: 
-
+      - run: |
+          ls
+          
+         
       - run: | 
           $Env="CAP"
           echo $Env 
