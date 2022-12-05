@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           ls
-          rmdir /S D:\a\hello-world-npm\hello-world-npm\src
+          git clean -ffdx
           echo "====================================="
           ls
          
