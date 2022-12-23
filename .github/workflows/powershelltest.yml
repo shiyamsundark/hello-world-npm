@@ -19,6 +19,7 @@ jobs:
            Fortify_Verison="HOTFIX"
         else
            Fortify_Verison="FEATURE"
+           echo $Fortify_Verison is the version
         fi
         
         echo "---------------setting output---------------------"
