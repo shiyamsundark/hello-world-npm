@@ -33,4 +33,4 @@ jobs:
 
       run: |
         
-        echo $FORTIFY_APP_VERSION is the version
+        echo ${{ steps.Version.outputs.Fortify_Verison }} is the version
