@@ -26,10 +26,6 @@ jobs:
         echo "Fortify_Verison=$Fortify_Verison" >> $env:GITHUB_OUTPUT
     
     - name: Fortify Security Check
-      
-      env:
-
-        FORTIFY_APP_VERSION: ${{ steps.Version.outputs.Fortify_Verison }}
 
       run: |
         
