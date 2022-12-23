@@ -22,6 +22,7 @@ jobs:
            echo $Fortify_Verison is the version
         fi
         
+        echo $Fortify_Verison is the version
         echo "---------------setting output---------------------"
         echo "Fortify_Verison=$Fortify_Verison" >> $env:GITHUB_OUTPUT
     
