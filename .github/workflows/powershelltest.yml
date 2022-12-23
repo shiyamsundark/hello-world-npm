@@ -1,0 +1,36 @@
+name: Test-version-Fortify
+on:
+  workflow_dispatch:
+jobs:        
+   Fortify-test-version:
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: Checkout code
+     
+      uses: actions/checkout@v3
+    
+    - name: Setting Fortify App Version
+      id: Version
+      run: |
+        if [[ $GITHUB_REF_NAME == "development" ]];then
+           Fortify_Verison="MAIN"
+        elif [[ $GITHUB_REF_NAME == "hotfix-23*" ]];then   
+           Fortify_Verison="HOTFIX"
+        else
+           Fortify_Verison="FEATURE"
+           echo $Fortify_Verison is the version
+        fi
+        
+        echo "---------------setting output---------------------"
+        echo "Fortify_Verison=$Fortify_Verison" >> $env:GITHUB_OUTPUT
+    
+    - name: Fortify Security Check
+      
+      env:
+
+        FORTIFY_APP_VERSION: ${{ steps.Version.outputs.Fortify_Verison }}
+
+      run: |
+        
+        echo $FORTIFY_APP_VERSION is the version
