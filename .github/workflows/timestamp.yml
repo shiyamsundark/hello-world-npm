@@ -11,6 +11,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          DATE_STR=$(date +%Y%m%d-%H%M%S)
+          DATE_STR=$(date +%Y/%m/%d_%H:%M:%S)
           
           echo "Build Timestamp: $DATE_STR"
