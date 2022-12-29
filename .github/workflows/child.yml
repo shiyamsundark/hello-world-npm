@@ -1,4 +1,4 @@
-name: Child
+name: Memory
 
 on:
   workflow_dispatch:
