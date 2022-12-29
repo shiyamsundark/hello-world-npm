@@ -1,15 +1,17 @@
 name: Child
 
 on:
-  workflow_call:
-   inputs:
-     Version:
-          type: string
+  workflow_dispatch:
+
 jobs: 
-  Test: 
+  Memory: 
     runs-on: ubuntu-latest
     steps:
-     - name: Display Release_Version and Environment
-       run: |
-              echo "Version = ${{ github.event.inputs.Version }}"
-              echo "Environment = ${{ github.event.inputs.Environment }}"
+
+     - run: |
+        echo "------------------------free-----------------------"
+        free -m
+        echo "----------------------------------------------------------------"
+        vmstat
+        echo "----------------------------------------------------------------"
+          
