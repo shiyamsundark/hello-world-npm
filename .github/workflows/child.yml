@@ -11,6 +11,6 @@ jobs:
   
      - run: |
          echo ${{ secrets.UTF_TEST }}
-         TOKEN=$(echo '${{ secrets.UTF_TEST }}' | iconv -t UTF8 )
+         TOKEN=$(echo '${{ secrets.UTF_TEST }}' | base64 )
          echo $TOKEN
      
