@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-     - uses: actions/checkout@v3
+  
      - run: |
      
-         git reflog
+         TOKEN=$(echo 'latin string' | iconv -t utf-8 | base64)
+         echo $TOKEN
           
