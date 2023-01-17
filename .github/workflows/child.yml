@@ -11,7 +11,7 @@ jobs:
   
      - run: |
         
-        echo 'latin string' | iconv --verbose -t utf-8 > yourfileInUTF8
+        echo 'latin string' > yourfileInUTF8
         ls -lrta
         echo =====================file=================
         cat yourfileInUTF8
