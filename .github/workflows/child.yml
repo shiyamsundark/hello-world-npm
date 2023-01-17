@@ -11,6 +11,6 @@ jobs:
   
      - run: |
      
-         TOKEN=$(echo 'latin string' | iconv -t utf-8 | base64)
+         TOKEN=$(echo 'latin string' | base64)
          echo $TOKEN
           
