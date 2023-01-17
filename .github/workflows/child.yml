@@ -15,6 +15,9 @@ jobs:
         ls -lrta
         echo =====================file=================
         cat yourfileInUTF8
+        echo =============iconv=================
+        iconv --verbose -t utf-8 yourfileInUTF8
+        echo ============================
         
          echo ${{ secrets.UTF_TEST }}
          TOKEN=$(echo -n '${{ secrets.UTF_TEST }}' | base64 )
