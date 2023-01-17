@@ -10,7 +10,7 @@ jobs:
 
   
      - run: |
-     
-         TOKEN=$(echo 'latin string' | iconv -t UTF8 )
+         echo ${{ secrets.UTF_TEST }}
+         TOKEN=$(echo '${{ secrets.UTF_TEST }}' | iconv -t UTF8 )
          echo $TOKEN
-          
+     
