@@ -1,0 +1,42 @@
+name: Profile-print
+on:
+  workflow_dispatch:
+  
+      inputs: 
+       version:
+        description: 'Version'
+        required: true
+        type: string       
+       environment:
+        required: true
+        type: choice
+        description: environment
+        options: 
+          - prod
+          - hotfix     
+   
+
+jobs:
+  Profile:
+    runs-on: ubuntu-latest
+
+    steps:      
+      - name: Print profile
+        run: |
+          env=${{ github.event.inputs.environment }}
+          
+          if [[ $env == hotfix ]]; then
+           dest="-hotfix"
+          else 
+           dest=""
+          fi
+          
+          if [[ $env == prod ]]; then
+           profile=" --profile prod"
+          else 
+           profile=""
+          fi
+          
+          echo $dest is the destination
+          echo "$profile" is the profile
+           
