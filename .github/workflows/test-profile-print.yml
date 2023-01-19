@@ -41,4 +41,5 @@ jobs:
           
           echo $dest is the destination
           echo "$profile" is the profile
+          echo $BucketName is the BucketName
            
