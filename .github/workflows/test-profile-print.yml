@@ -37,6 +37,8 @@ jobs:
            profile=""
           fi
           
+          BucketName="abc$dest.abdcorp.com"  
+          
           echo $dest is the destination
           echo "$profile" is the profile
            
