@@ -10,10 +10,7 @@ jobs:
       - name: Print the analysis branch
         run: echo ${{ github.head_ref }}
         
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      
+
       - run: |
-          ls -lrta    
+           echo "::error::Invalid UserStory..Please append UserStory number after AB#...Exiting!!"
+           exit 1  
