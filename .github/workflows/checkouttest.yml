@@ -8,7 +8,12 @@ jobs:
       
     steps:
       - uses: actions/checkout@v3
-      - run : echo log of Test1 job
+      - run : |
+          echo log of Test1 job
+          jobs_url="https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${{ github.run_id }}/jobs"
+          curl -s -H "Authorization: token ${{ secrets.LOGS_SECRET }}" $jobs_url
+          job_id=$(curl -s -H "Authorization: token ${{ secrets.LOGS_SECRET }}" $jobs_url | jq -r '.jobs[] | select(.name == "${{ github.job }}" and .status == "in_progress") | .id')
+          echo $job_id is job_id
   Test:
     runs-on: ubuntu-latest 
     needs: Test1  
