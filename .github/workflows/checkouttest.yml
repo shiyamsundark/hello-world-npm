@@ -13,12 +13,12 @@ jobs:
           jobs_url="https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${{ github.run_id }}/jobs"
           curl -s -H "Authorization: token ${{ secrets.LOGS_SECRET }}" $jobs_url
           job_id=$(curl -s -H "Authorization: token ${{ secrets.LOGS_SECRET }}" $jobs_url | jq -r '.jobs[] | select(.name == "${{ github.job }}" and .status == "in_progress") | .id')
-          echo $job_id is job_id
+          echo $job_id is job_id of Test1 job 
   Test:
     runs-on: ubuntu-latest 
     needs: Test1  
     outputs:
-        job_id: ${{ steps.Branchname.outputs.Dev_branch }}
+        job_id: ${{ steps.Branchname.outputs.job_id }}
     steps:
       - uses: actions/checkout@v3
       - name: Print the analysis branch
@@ -35,9 +35,15 @@ jobs:
            
            echo "job_id=$job_id" >> $GITHUB_OUTPUT
            
+  Log:
+    runs-on: ubuntu-latest 
+    needs: Test  
+    outputs:
+        job_id: ${{ steps.Branchname.outputs.job_id }}
+    steps:
       - run: |    
-      
+           echo ${{ needs.Test.outputs.job_id }} is job id of test job
            echo "----------------gh command-----------"
-           gh run view --job ${{ steps.Branchname.outputs.job_id }} --log   
+           gh run view --job ${{ needs.Test.outputs.job_id }} --log   
         env:
           GH_TOKEN: ${{ secrets.LOGS_SECRET }}  
