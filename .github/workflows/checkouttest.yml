@@ -44,6 +44,12 @@ jobs:
       - uses: actions/checkout@v3
       - run: |    
            echo ${{ needs.Test.outputs.job_id }} is job id of test job
+           
+           jobs_url="https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${{ github.run_id }}/jobs"
+           
+           job_id=$(curl -s -H "Authorization: token ${{ secrets.LOGS_SECRET }}" $jobs_url | jq -r '.jobs[] | select(.name == "${{ github.job }}" and .status == "in_progress") | .id')
+           echo $job_id is job_id of Log job
+           
            echo "----------------gh command-----------"
            gh run view --job ${{ needs.Test.outputs.job_id }} --log   
         env:
