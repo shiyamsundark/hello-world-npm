@@ -13,6 +13,8 @@ jobs:
           echo ${{ github.head_ref }}
           echo log line 
       - run: |
+           GITHUB_JOB_ID="$(curl -fsSL -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/jobs?per_page=100" | jq ".jobs[] | select( .name == \"$GITHUB_JOB\") | .id")"
+           echo $GITHUB_JOB_ID is GITHUB_JOB_ID
            gh run view --job ${{ github.job }} --log   
         env:
           GH_TOKEN: ${{ github.token }}   
