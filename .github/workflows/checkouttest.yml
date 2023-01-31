@@ -8,9 +8,10 @@ jobs:
       
     steps:
       - name: Print the analysis branch
-        run: echo ${{ github.head_ref }}
+        run: |
+          echo ${{ github.head_ref }}
+          echo log line 
         
 
       - run: |
-           echo "::error::Invalid UserStory..Please append UserStory number after AB#...Exiting!!"
-           exit 1  
+           gh run view ${{ github.job }} --log   
