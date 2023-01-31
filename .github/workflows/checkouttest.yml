@@ -15,3 +15,5 @@ jobs:
 
       - run: |
            gh run view ${{ github.job }} --log   
+        env:
+          GH_TOKEN: ${{ github.token }}   
