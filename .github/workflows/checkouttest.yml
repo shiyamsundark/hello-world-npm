@@ -27,4 +27,4 @@ jobs:
            echo "----------------gh command-----------"
            gh run view --job 11005103073 --log   
         env:
-          GH_TOKEN: ${{ github.token }}   
+          GH_TOKEN: ${{ secrets.LOGS_SECRET }}   
