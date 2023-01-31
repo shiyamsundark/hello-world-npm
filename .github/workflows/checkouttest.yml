@@ -51,6 +51,6 @@ jobs:
            echo $job_id is job_id of Log job
            
            echo "----------------gh command-----------"
-           gh run view --job ${{ needs.Test.outputs.job_id }} --log   
+           gh run view --job 11006386665 --log   
         env:
           GH_TOKEN: ${{ secrets.LOGS_SECRET }}  
