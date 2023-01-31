@@ -13,6 +13,6 @@ jobs:
           echo ${{ github.head_ref }}
           echo log line 
       - run: |
-           gh run view --log   
+           gh run view --job ${{ github.job }} --log   
         env:
           GH_TOKEN: ${{ github.token }}   
