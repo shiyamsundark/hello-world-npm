@@ -41,6 +41,7 @@ jobs:
     outputs:
         job_id: ${{ steps.Branchname.outputs.job_id }}
     steps:
+      - uses: actions/checkout@v3
       - run: |    
            echo ${{ needs.Test.outputs.job_id }} is job id of test job
            echo "----------------gh command-----------"
