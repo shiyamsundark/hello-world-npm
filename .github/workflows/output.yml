@@ -15,7 +15,8 @@ jobs:
                env=prod
                echo $env is the env
                echo "env=$env" >> $GITHUB_OUTPUT
-        - run:   echo ${{ needs.Build-Validation.outputs.env }} is the env     
+               
+        - run: echo ${{ steps.envid.outputs.env }} is the env     
   
   Build-Parameters:
      needs: Build-Validation
