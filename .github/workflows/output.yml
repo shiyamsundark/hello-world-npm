@@ -6,21 +6,12 @@ jobs:
   
   Build-Validation:
       runs-on: ubuntu-latest
-      outputs:
-        env: ${{ steps.envid.outputs.env }} 
+
       steps:
         - name: Set Branch Parameters
           id: envid
           run: |
-               env=prod
-               echo $env is the env
-               echo "env=$env" >> $GITHUB_OUTPUT
-               
-        - run: echo ${{ steps.envid.outputs.env }} is the env     
+               echo $REPO_NAME is repo name
+                   
   
-  Build-Parameters:
-     needs: Build-Validation
-     runs-on: ubuntu-latest
-     steps:
-       - run: |
-           echo ${{ needs.Build-Validation.outputs.env }} is the env
+ 
