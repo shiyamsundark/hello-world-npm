@@ -1,17 +1,26 @@
 name: output test
-on: 
-  workflow_dispatch:    
-
-jobs:  
+on:
+  workflow_dispatch:
   
-  Build-Validation:
-      runs-on: ubuntu-latest
+      inputs: 
+       version:
+        description: 'Version'
+        required: true
+        type: string         
+   
+run-name: Deploy ${{ inputs.Version }} to ENV
 
-      steps:
-        - name: Set Branch Parameters
-          id: envid
-          run: |
-               echo ${{ github.repository }} is repo name
+jobs:
+
+   Job1:    
+     runs-on: ubuntu-latest
+     steps:
+       - name: Generate summary
+         run: |
+            DATE_STR=$(date +"%d-%m-%Y %H:%M:%S")
+           
+            echo "Version: ${{ github.event.inputs.version }}" >> $GITHUB_STEP_SUMMARY
+            echo "Deploy Timestamp: $DATE_STR UTC" >> $GITHUB_STEP_SUMMARY    
                    
   
  
