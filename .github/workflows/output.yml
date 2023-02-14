@@ -8,6 +8,7 @@ jobs:
    Job1:    
      runs-on: macos-latest
      steps:
+       - run: jarsigner -version
        - run: |
  
           xmllint --version
