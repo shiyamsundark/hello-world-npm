@@ -12,5 +12,5 @@ jobs:
  
           xmllint --version
        - run: |
-          brew install plistutil
+          ls -lrta /usr/libexec/PlistBuddy
           /usr/libexec/PlistBuddy Help
