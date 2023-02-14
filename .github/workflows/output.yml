@@ -13,4 +13,4 @@ jobs:
           xmllint --version
        - run: |
           
-          /usr/libexec/PlistBuddy --help
+          /usr/libexec/PlistBuddy Help
