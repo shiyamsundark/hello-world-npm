@@ -1,0 +1,20 @@
+name: Build
+on:
+  workflow_dispatch:
+jobs:
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: 1141cac75a861995f4c7d1cee1cc50cd9c4064a7
+        with:
+            args: >
+              -Dsonar.organization=2115-27
+              -Dsonar.projectKey=2115-27_hello-world-npm
