@@ -13,7 +13,9 @@ jobs:
       - name: Install mailutils
         run: |
          sudo apt-get install -y mailutils
- 
+         
+      - run: ls -lrta
+      
       - name: send email
         run: |
          echo "Test mail from GitHub with action details" >> email.txt
