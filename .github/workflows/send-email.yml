@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - run: |
+         sudo apt-get install bsd-mailx
+         mail -s "A mail sent using mailx" shiyamsundar.k@infosys.com
+         
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
