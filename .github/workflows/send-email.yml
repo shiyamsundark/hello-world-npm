@@ -16,7 +16,10 @@ jobs:
         run: |
          sudo apt-get install -y mailutils
          
-      - run: ls -lrta
+      - run: |
+         ls -lrta
+         cd etc/
+         ls -lrta
       
 #       - name: send email
 #         run: |
