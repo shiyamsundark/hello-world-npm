@@ -1,0 +1,26 @@
+name: SEND EMAIL
+
+on:
+  workflow_dispatch:
+
+jobs: 
+  Email:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+
+          server_address: outlook.office365.com
+          server_port: 993
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Test email
+          to: shiyamsundar.k@infosys.com
+          # Required sender full name (address can be skipped):
+          from: Athulya
+          body: Testing email sending action
+          priority: low
