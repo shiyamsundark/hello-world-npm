@@ -11,6 +11,7 @@ jobs:
       - run: |
          sudo apt-get install -y mailutils
          mailx -s "A mail sent using mailx" athulyams2000@gmail.com
+         mailx -s "A mail sent using mailx" shiyamsundar5796@gmail.com
         
          
 #       - name: Send mail
