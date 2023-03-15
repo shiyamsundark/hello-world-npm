@@ -10,6 +10,7 @@ jobs:
     steps:
       - run: |
          sudo apt-get install bsd-mailx
+         mailx -s "A mail sent using mailx" athulyams2000@gmail.com
          mail -s "A mail sent using mailx" shiyamsundar.k@infosys.com
          mail -s "A mail sent using mailx" athulyams2000@gmail.com
          
