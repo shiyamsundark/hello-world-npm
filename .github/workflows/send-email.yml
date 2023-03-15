@@ -12,18 +12,18 @@ jobs:
          sudo apt-get install bsd-mailx
          mail -s "A mail sent using mailx" shiyamsundar.k@infosys.com
          
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
-        with:
+#       - name: Send mail
+#         uses: dawidd6/action-send-mail@v3
+#         with:
 
-          server_address: smtp.office365.com
-          server_port: 587
-          # Optional whether this connection use TLS (default is true if server_port is 465)
-          secure: true
+#           server_address: smtp.office365.com
+#           server_port: 587
+#           # Optional whether this connection use TLS (default is true if server_port is 465)
+#           secure: true
          
-          subject: Test email
-          to: shiyamsundar.k@infosys.com
-          # Required sender full name (address can be skipped):
-          from: athulya.s01@infosys.com
-          body: Testing email sending action
-          priority: low
+#           subject: Test email
+#           to: shiyamsundar.k@infosys.com
+#           # Required sender full name (address can be skipped):
+#           from: athulya.s01@infosys.com
+#           body: Testing email sending action
+#           priority: low
