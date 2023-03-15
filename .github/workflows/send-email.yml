@@ -16,11 +16,10 @@ jobs:
           server_port: 587
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
+         
           subject: Test email
           to: shiyamsundar.k@infosys.com
           # Required sender full name (address can be skipped):
-          from: Athulya
+          from: athulya.s01@infosys.com
           body: Testing email sending action
           priority: low
