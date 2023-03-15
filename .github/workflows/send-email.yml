@@ -10,8 +10,9 @@ jobs:
     steps:
       - run: |
          sudo apt-get install -y mailutils
-         mailx -s "A mail sent using mailx" athulyams2000@gmail.com
-         mailx -s "A mail sent using mailx" shiyamsundar5796@gmail.com
+         echo "Test mail from GitHub with action details" >> email.txt
+         cat email.txt | mailx -v -s "Test mail from GitHub" -S smtp="smtp.office365.com:587" -S smptp-use-starttls -S smtp-auth=login -S smtp-auth-user="${{secrets.MAIL_USERNAME}}" -S smtp-auth-password="${{secrets.MAIL_PASSWORD}}" -S from="athulya.s01@infosys.com" shiyamsundar.k@infosys.com
+        
         
          
 #       - name: Send mail
