@@ -11,10 +11,11 @@ jobs:
       - name: Install mailutils
         run: |
          sudo apt-get install -y mailutils
+         
       - name: send email
         run: |
          echo "Test mail from GitHub with action details" >> email.txt
-         cat email.txt | mailx -s "Test mail from GitHub" -S smtp="smtp.office365.com:587" -S smptp-use-starttls -S smtp-auth=login -S smtp-auth-user="${{secrets.MAIL_USERNAME}}" -S smtp-auth-password="${{secrets.MAIL_PASSWORD}}" -S from="athulya.s01@infosys.com" shiyamsundar.k@infosys.com
+         cat email.txt | mailx -s "Test mail from GitHub" -S smtp=smtp.live.com:587 -S smptp-use-starttls -S smtp-auth=login -S smtp-auth-user="${{secrets.MAIL_USERNAME}}" -S smtp-auth-password="${{secrets.MAIL_PASSWORD}}" -S from="athulya.s01@infosys.com" shiyamsundar.k@infosys.com
         
         
          
