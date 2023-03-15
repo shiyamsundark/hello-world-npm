@@ -8,9 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
+      
       - name: Install mailutils
         run: |
          sudo apt-get install -y mailutils
+ 
       - name: send email
         run: |
          echo "Test mail from GitHub with action details" >> email.txt
