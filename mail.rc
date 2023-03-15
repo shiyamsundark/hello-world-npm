@@ -1,5 +1,9 @@
 set smtp-use-starttls
 set ssl-verify=ignore
-sst smtp-auth=login
-
+set smtp-auth=login
+set smtp=smtp://smtp.gmail.com:587
+set smtp-auth-user=githubtestinfy@gmail.com
+set smtp-auth-password=Infy@123456789
+set from=githubtestinfy@gmail.com
+set realname="Github test"
 
