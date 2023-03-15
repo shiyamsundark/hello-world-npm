@@ -16,10 +16,10 @@ jobs:
          
       - run: ls -lrta
       
-      - name: send email
-        run: |
-         echo "Test mail from GitHub with action details" >> email.txt
-         cat email.txt | mailx -s "Test mail from GitHub" shiyamsundar5796@gmail.com
+#       - name: send email
+#         run: |
+#          echo "Test mail from GitHub with action details" >> email.txt
+#          cat email.txt | mailx -s "Test mail from GitHub" shiyamsundar5796@gmail.com
         
         
          
