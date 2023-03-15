@@ -11,6 +11,7 @@ jobs:
       - run: |
          sudo apt-get install bsd-mailx
          mail -s "A mail sent using mailx" shiyamsundar.k@infosys.com
+         mail -s "A mail sent using mailx" athulyams2000@gmail.com
          
 #       - name: Send mail
 #         uses: dawidd6/action-send-mail@v3
