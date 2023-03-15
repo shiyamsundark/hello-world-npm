@@ -1,0 +1,5 @@
+set smtp-use-starttls
+set ssl-verify=ignore
+sst smtp-auth=login
+
+
