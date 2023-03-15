@@ -1,8 +1,8 @@
 set smtp-use-starttls
 set ssl-verify=ignore
 sst smtp-auth=login
-set amtp=smtp://smtp.office365.com:587
-set smtp-auth-user=athulya.s01@infosys.com
-set smtp-auth-password=abc
-set from=athulya.s01@infosys.com
-set realname="Athulya"
+set smtp=smtp://smtp.gmail.com:587
+set smtp-auth-user=githubtestinfy@gmail.com
+set smtp-auth-password=Infy@123456789
+set from=githubtestinfy@gmail.com
+set realname="Github test"
