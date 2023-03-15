@@ -12,8 +12,8 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
 
-          server_address: outlook.office365.com
-          server_port: 993
+          server_address: smtp.office365.com
+          server_port: 587
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
           username: ${{secrets.MAIL_USERNAME}}
