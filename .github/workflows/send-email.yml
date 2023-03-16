@@ -32,14 +32,15 @@ jobs:
         uses: dawidd6/action-send-mail@v3
         with:
 #           connection_url: ${{ secrets.MAIL_CONNECTION }}
-          server_address: smtp.gmail.com
-          server_port: 465
+          server_address: smtp.office365.com
+          server_port: 587
+          secure: true
           # Optional whether this connection use TLS (default is true if server_port is 465)
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}        
           subject: Test email
-          to: githubtestinfy@gmail.com
+          to: shiyamsundar.k@infosys.com
           # Required sender full name (address can be skipped):
-          from: githubtestinfy@gmail.com
+          from: athulya.s01@infosys.com
           body: Testing email sending action
           priority: low
