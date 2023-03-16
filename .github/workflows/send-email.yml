@@ -10,16 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - run: ls -lrta
+#       - run: ls -lrta
       
-      - name: Install mailutils
-        run: |
-         sudo apt-get install -y mailutils
+#       - name: Install mailutils
+#         run: |
+#          sudo apt-get install -y mailutils
          
-      - run: |
-         ls -lrta
-         cd etc/
-         ls -lrta
+#       - run: |
+#          ls -lrta
+#          cd etc/
+#          ls -lrta
       
 #       - name: send email
 #         run: |
@@ -28,18 +28,18 @@ jobs:
         
         
          
-#       - name: Send mail
-#         uses: dawidd6/action-send-mail@v3
-#         with:
-
-#           server_address: smtp.office365.com
-#           server_port: 587
-#           # Optional whether this connection use TLS (default is true if server_port is 465)
-#           username: ${{secrets.MAIL_USERNAME}}
-#           password: ${{secrets.MAIL_PASSWORD}}        
-#           subject: Test email
-#           to: shiyamsundar.k@infosys.com
-#           # Required sender full name (address can be skipped):
-#           from: athulya.s01@infosys.com
-#           body: Testing email sending action
-#           priority: low
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          connection_url: ${{ secrets.MAIL_CONNECTION }}
+          server_address: smtp.office365.com
+          server_port: 587
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}        
+          subject: Test email
+          to: shiyamsundar.k@infosys.com
+          # Required sender full name (address can be skipped):
+          from: athulya.s01@infosys.com
+          body: Testing email sending action
+          priority: low
