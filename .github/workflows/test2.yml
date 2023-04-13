@@ -16,6 +16,6 @@ jobs:
         env:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-             tag_name: 2.0.0
-             release_name: New_release-2
+             tag_name: 9.9.9
+             release_name: New_release-3
              
