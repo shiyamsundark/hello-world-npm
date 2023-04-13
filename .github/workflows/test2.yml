@@ -17,5 +17,5 @@ jobs:
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
              tag_name: 2.0.0
-             release_name: New_release
+             release_name: New_release-2
              
