@@ -11,7 +11,5 @@ jobs:
     steps:
       - run: |
           myString="20/04/2023"
-          Timestamp=`date -d "$myString" + %s`
-          FormattedDate=$(date -d "@$Timestamp" +%Y%m%d)
-          echo $FormattedDate is the FormattedDate
+          echo ${myString:6:4}${myString:0:2}${myString:3:2}
              
