@@ -1,6 +1,11 @@
 name: Release-test
 on:
   workflow_dispatch:
+   inputs:
+    backdate:
+      type: string
+      required: true
+     
       
 
       
@@ -10,6 +15,6 @@ jobs:
 
     steps:
       - run: |
-          myString="20/04/2023"
-          echo ${myString:6:4}${myString:0:2}${myString:3:2}
+          myString="${{ inputs.backdate }}"
+          echo ${myString:6:4}${myString:3:2}${myString:0:2}
              
