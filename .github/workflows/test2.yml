@@ -16,5 +16,5 @@ jobs:
     steps:
       - run: |
           myString="${{ inputs.backdate }}"
-          echo ${myString:6:4}${myString:3:2}${myString:0:2}
-             
+          newdate=$(echo ${myString:6:4}${myString:3:2}${myString:0:2})
+          echo $newdate is newdate   
