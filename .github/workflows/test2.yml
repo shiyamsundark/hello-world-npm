@@ -9,13 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Create Github Release
-        id: create_release
-        uses: actions/create-release@v1.1.4
-        env:
-             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-             tag_name: 9.9.9
-             release_name: New_release-3
+      - run: |
+          myString="20/04/2023"
+          Timestamp=$(date -d "$myString" + %s)
+          FormattedDate=$(date -d "@$Timestamp" +%Y%m%d)
+          echo $FormattedDate is the FormattedDate
              
