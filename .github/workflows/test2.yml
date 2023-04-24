@@ -1,8 +1,6 @@
 name: Release-test
 on:
   workflow_dispatch:
-  
-permissions: read-all
     
 jobs:
    User-API: 
@@ -13,6 +11,8 @@ jobs:
       - name: Get user
         run: |
           gh api /user
+          echo -----------------------------------
+          git config --list
          
         env:
-           GH_TOKEN : ${{ secrets.GITHUB_TOKEN }}
+           GH_TOKEN : ${{ secrets.USER }}
