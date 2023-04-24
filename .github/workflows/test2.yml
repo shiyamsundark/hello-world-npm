@@ -2,10 +2,8 @@ name: Release-test
 on:
   workflow_dispatch:
   
-permissions:
-  read:user
-  
-  
+permissions: read-all
+    
 jobs:
    User-API: 
     runs-on: ubuntu-latest
