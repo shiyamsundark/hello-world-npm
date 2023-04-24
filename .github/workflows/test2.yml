@@ -15,4 +15,4 @@ jobs:
         env:
            GH_TOKEN : ${{ secrets.USER }}
            
-      - run:  git config --list     
+      - run:  git config user.name     
