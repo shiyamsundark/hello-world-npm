@@ -2,7 +2,9 @@ name: Release-test
 on:
   workflow_dispatch:
   
-
+permissions:
+  read:user
+  
   
 jobs:
    User-API: 
@@ -15,4 +17,4 @@ jobs:
           gh api /user
          
         env:
-           GH_TOKEN : ${{ secrets.USER }}
+           GH_TOKEN : ${{ secrets.GITHUB_TOKEN }}
