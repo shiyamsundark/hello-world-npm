@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read:user
+  contents: read
     
 jobs:
    User-API: 
