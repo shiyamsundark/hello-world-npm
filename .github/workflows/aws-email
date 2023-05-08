@@ -1,0 +1,14 @@
+name: Email action
+
+on:
+  workflow_dispatch:  
+jobs:
+  Email-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step1
+        run: |
+          aws ses send-email --from athulyams2000@gmail.com --destination malavikajun02@gmail.com --message Subject={Data=string,Charset=string},Body={Text={Data=string,Charset=string}}
+          
+          
+          
