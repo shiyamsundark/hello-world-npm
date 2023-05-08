@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Step1
         run: |
-          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=malavikajun02@gmail.com --message Subject={Testing},Body={Text={Testing}}
+          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=malavikajun02@gmail.com --message Subject=Testing,Body=Testing
           
           
           
