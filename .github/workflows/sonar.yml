@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   sonarcloud:
+    timeout-minutes: 1
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
