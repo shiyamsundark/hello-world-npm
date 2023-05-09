@@ -6,6 +6,11 @@ jobs:
   Email-action:
     runs-on: ubuntu-latest
     steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+            aws-region: us-west-1
+            role-to-assume: ${{ secrets.SES_USER }}
       - name: Step1
         run: |
           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=malavikajun02@gmail.com --message Subject=Testing,Body=Testing
