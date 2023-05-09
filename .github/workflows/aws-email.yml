@@ -12,7 +12,6 @@ jobs:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: us-west-1
-            role-to-assume: ${{ secrets.SES_USER }}
       - name: Step1
         run: |
           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=malavikajun02@gmail.com --message Subject=Testing,Body=Testing
