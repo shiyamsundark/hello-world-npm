@@ -9,7 +9,7 @@
            "Charset": "UTF-8"
        },
        "Html": {
-           "Data": "Sample email for testing purpose. It can, for example, contain links like this one: <a class=\"ulink\" href=\"http://docs.aws.amazon.com/ses/latest/DeveloperGuide\" target=\"_blank\">Amazon SES Developer Guide</a>.",
+           "Data": "<!DOCTYPE html><html><head><title>Content Template</title></head><body><ul><li><strong>Build:</strong> value</li><li><strong>URL:</strong> <a href=\"https://example.com\">Link</a></li></ul></body></html>",
            "Charset": "UTF-8"
        }
    }
