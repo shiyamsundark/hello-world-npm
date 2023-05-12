@@ -19,6 +19,12 @@ jobs:
           pwd
           ls -lrta
           
+      - name: Edit json file
+        run: |
+          BuildNumber=${{ github.run_number }}
+          GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          sed -i "s/value/$BuildNumber/g" message.json
+          sed -i "s/buildurl/$GITHUB_WORKFLOW_URL/g" message.json
       - name: Step1
         run: |
           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com --message file://message.json
