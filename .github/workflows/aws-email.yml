@@ -21,11 +21,14 @@ jobs:
           
       - name: Edit json file
         run: |
+          JobName=$(curl -s "https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}" | jq -r '.workflow_run.head_commit.message' | cut -d "-" -f 1)
           BuildNumber=${{ github.run_number }}
           GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          sed -i "s#value#$BuildNumber#g" message.json
-          sed -i "s#value#$BuildNumber#g" message.json
+          
+          sed -i "s#JobName#$JobName#g" message.json
+          sed -i "s#BuildNoValue#$BuildNumber#g" message.json
           sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
+      
       - name: Step1
         run: |
           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com --message file://message.json
