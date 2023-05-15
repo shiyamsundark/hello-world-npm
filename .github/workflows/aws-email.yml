@@ -23,7 +23,7 @@ jobs:
         run: |
           Runid=${{ github.run_id }}
           echo -------------------------
-          curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}
+          curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}"
           echo ------------------------------
           JobName=$(curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}" | jq -r '.workflow_run.head_commit.message' | cut -d "-" -f 1)
           BuildNumber=${{ github.run_number }}
