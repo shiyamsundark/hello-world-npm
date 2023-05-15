@@ -9,7 +9,7 @@
            "Charset": "UTF-8"
        },
        "Html": {
-           "Data": "<!DOCTYPE html><html><head><title>Content Template</title></head><body><p>Hi All,</p><p>Please find the build details below:</p><ul><li><strong>Repo Name:</strong> RepoNameValue</li><li><strong> Job:</strong> JobName</li><li><strong> Branch:</strong> BranchValue</li><li><strong>BuildNumber:</strong> BuildNoValue</li><li><strong>GitHub Workflow URL:</strong> <a href=\"buildurl\">Click here to view the job</a></li></ul></body></html>",
+           "Data": "<!DOCTYPE html><html><head><title>Content Template</title></head><body><p>Hi All,</p><p>Please find the build details below:</p><ul><li><strong>Repo Name:</strong> RepoNameValue</li><li><strong> Job:</strong> JobName</li><li><strong> Branch:</strong> BranchValue</li><li><strong>BuildNumber:</strong> BuildNoValue</li><li><strong>GitHub Workflow URL:</strong> <a href=\"buildurl\">Click here to view the job</a></li></ul><p>Regards,</p><p>DevOps Team</p></body></html>",
            "Charset": "UTF-8"
        }
    }
