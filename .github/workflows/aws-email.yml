@@ -21,10 +21,15 @@ jobs:
           
       - name: Edit json file
         run: |
-          JobName=$(curl -s "https://api.github.com/repos/{owner}/{repo}/actions/runs/{run_id}" | jq -r '.workflow_run.head_commit.message' | cut -d "-" -f 1)
+          Runid=${{ github.run_id }}
+          echo -------------------------
+          curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}
+          echo ------------------------------
+          JobName=$(curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}" | jq -r '.workflow_run.head_commit.message' | cut -d "-" -f 1)
           BuildNumber=${{ github.run_number }}
           GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           
+          echo $JobName is JobName
           sed -i "s#JobName#$JobName#g" message.json
           sed -i "s#BuildNoValue#$BuildNumber#g" message.json
           sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
