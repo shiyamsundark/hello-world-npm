@@ -9,9 +9,11 @@ jobs:
     steps:
       - run: |
           echo test
+          exit 1
         
   Job2:
     runs-on: ubuntu-latest
+    if: always()
     needs: [Job1]
     steps:
       - name: Configure AWS Credentials
