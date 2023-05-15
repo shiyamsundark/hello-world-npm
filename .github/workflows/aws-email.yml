@@ -2,9 +2,17 @@ name: Email action
 
 on:
   workflow_dispatch:  
+
 jobs:
-  Email-action:
+  Job1:
     runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo test
+        
+  Job2:
+    runs-on: ubuntu-latest
+    needs: [Job1]
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
