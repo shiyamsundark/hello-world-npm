@@ -36,6 +36,7 @@ jobs:
         run: |
           echo ${{ job.status }}
           JOB_ID=${{ github.job }}
+          echo $JOB_ID is JOB_ID
           curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/jobs/${JOB_ID}"
           
 #       - name: Edit json file
