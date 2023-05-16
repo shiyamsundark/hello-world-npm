@@ -13,10 +13,15 @@ jobs:
           JOB_ID=${{ github.job }}
           echo $JOB_ID is JOB_ID
           
-        
   Job2:
     runs-on: ubuntu-latest
-    needs: [Job1]
+    steps:
+      - run: |
+          exit 1      
+  Job3:
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [Job1,Job2]
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
