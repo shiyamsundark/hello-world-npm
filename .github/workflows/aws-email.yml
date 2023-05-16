@@ -47,11 +47,11 @@ jobs:
       
       - name: Get workflow run details
         run: |
-          gh run view ${{ github.run_id }} >> rundetails.txt
+          gh run view ${{ github.run_id }} | grep -E '^X' | awk '{print $2}')
         env:
             GH_TOKEN: ${{ github.token }}
             
-      - run:  cat rundetails.txt     
+   
           
 #       - name: Edit json file
 #         run: |
