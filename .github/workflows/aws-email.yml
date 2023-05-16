@@ -39,6 +39,10 @@ jobs:
           echo ${{ job.status }}
           JOB_ID=${{ github.job }}
           echo $JOB_ID is JOB_ID
+      
+      - name: Get workflow run details
+        run: |
+          gh run view ${{ github.run_id }}
           
 #       - name: Edit json file
 #         run: |
