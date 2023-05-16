@@ -17,40 +17,43 @@ jobs:
     needs: [Job1]
     steps:
       - name: Configure AWS Credentials
+        if: failure()
         uses: aws-actions/configure-aws-credentials@v1
         with:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: us-west-1
       
-      - uses: actions/checkout@v3
+      - name: Checkout
+        if: success()
+        uses: actions/checkout@v3
       
-      - run: |
-          pwd
-          ls -lrta
+#       - run: |
+#           pwd
+#           ls -lrta
           
-      - name: Edit json file
-        run: |
-          Runid=${{ github.run_id }}
-          echo -------------------------
-          curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          echo ------------------------------
-          JobName=$(curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}" | jq -r '.name' )
-          BuildNumber=${{ github.run_number }}
-          GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          RepoName=${{ github.repository }}
-          BranchName=${{ github.ref_name }}
-          echo $JobName is JobName
+#       - name: Edit json file
+#         run: |
+#           Runid=${{ github.run_id }}
+#           echo -------------------------
+#           curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+#           echo ------------------------------
+#           JobName=$(curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}" | jq -r '.name' )
+#           BuildNumber=${{ github.run_number }}
+#           GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+#           RepoName=${{ github.repository }}
+#           BranchName=${{ github.ref_name }}
+#           echo $JobName is JobName
          
-          sed -i "s#RepoNameValue#$RepoName#g" message.json
-          sed -i "s#JobName#$JobName#g" message.json
-          sed -i "s#BranchValue#$BranchName#g" message.json
-          sed -i "s#BuildNoValue#$BuildNumber#g" message.json
-          sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
+#           sed -i "s#RepoNameValue#$RepoName#g" message.json
+#           sed -i "s#JobName#$JobName#g" message.json
+#           sed -i "s#BranchValue#$BranchName#g" message.json
+#           sed -i "s#BuildNoValue#$BuildNumber#g" message.json
+#           sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
       
-      - name: Step1
-        run: |
-          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com --message file://message.json
+#       - name: Step1
+#         run: |
+#           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com --message file://message.json
           
           
           
