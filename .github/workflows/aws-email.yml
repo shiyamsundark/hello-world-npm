@@ -29,8 +29,10 @@ jobs:
       - run: |
           pwd
           ls -lrta
+          exit 1
           
       - name: checking job status
+        if: always()
         run: |
           echo ${{ job.status }}
           
