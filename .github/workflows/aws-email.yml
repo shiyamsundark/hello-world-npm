@@ -35,6 +35,8 @@ jobs:
         if: always()
         run: |
           echo ${{ job.status }}
+          JOB_ID=${{ github.job }}
+          curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/jobs/${JOB_ID}"
           
 #       - name: Edit json file
 #         run: |
