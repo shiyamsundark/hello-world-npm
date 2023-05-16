@@ -9,6 +9,7 @@ jobs:
     steps:
       - run: |
           echo test
+          echo ${{ job.status }}
           exit 1
         
   Job2:
