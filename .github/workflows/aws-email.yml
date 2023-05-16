@@ -47,6 +47,17 @@ jobs:
       
       - name: Get workflow run details
         run: |
+          
+          output=$(gh run view ${{ github.run_id }})  # Replace <run_id> with the actual ID of the GitHub Actions run
+
+          # Use grep to find the line containing the second occurrence of "X"
+          second_x_line=$(echo "$output" | grep -E '^X' | head -n 2 | tail -n 1)
+
+          # Use cut to extract the words after the second "X"
+          words_after_second_x=$(echo "$second_x_line" | cut -d ' ' -f 2-)
+
+          echo "$words_after_second_x"
+
           gh run view ${{ github.run_id }} | grep -E '^X' | awk '{print $2}'
         env:
             GH_TOKEN: ${{ github.token }}
