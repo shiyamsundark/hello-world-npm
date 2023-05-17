@@ -3,29 +3,28 @@ on:
   workflow_dispatch:
 jobs:
    
-     Set_ReleaseVersion_Variable: 
-      runs-on: ubuntu-latest
-      outputs:
-        Version: ${{ steps.versionid.outputs.Version }}
+#      Set_ReleaseVersion_Variable: 
+#       runs-on: ubuntu-latest
+#       outputs:
+#         Version: ${{ steps.versionid.outputs.Version }}
 
-      steps:
-        - id: versionid
-          run: | 
-               echo setting release version!!
-               newversion="23.01.0.147"
-               echo $newversion is the version
-               echo "Version=$newversion" >> $GITHUB_OUTPUT
+#       steps:
+#         - id: versionid
+#           run: | 
+#                echo setting release version!!
+#                newversion="23.01.0.147"
+#                echo $newversion is the version
+#                echo "Version=$newversion" >> $GITHUB_OUTPUT
      TestJob: 
       runs-on: ubuntu-latest
-      needs: [Set_ReleaseVersion_Variable]
+#       needs: [Set_ReleaseVersion_Variable]
       steps:   
-        - run: echo ${{ needs.Set_ReleaseVersion_Variable.outputs.Version }}  
+        - run: echo testing parent 
      
      Child:
  
-       needs: [Set_ReleaseVersion_Variable]         
-       uses: ./.github/workflows/child.yml
-       with: 
-          Version: ${{ needs.Set_ReleaseVersion_Variable.outputs.Version }}
+       needs: [TestJob]         
+       uses: 2115-27/java-maven-sample-war/.github/workflows/child.yml@master
+       
          
          
