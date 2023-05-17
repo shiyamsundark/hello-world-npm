@@ -48,12 +48,18 @@ jobs:
       - name: Get workflow run details
         run: |
           
-          output=$(gh run view ${{ github.run_id }})  # Replace <run_id> with the actual ID of the GitHub Actions run
+      
+          failed_job=$(gh run view ${{ github.run_id }} | grep -oP 'X \K\S+(?=\s+in)')
 
-          echo $output
-          echo "Failed Job: $failed_job"
-          echo "Failed Step: $failed_step"
-          echo "Annotations/Error Message: $annotations"
+          # Extract failed step name
+          failed_step=$(gh run view ${{ github.run_id }} | grep -oP 'X \K\S+(?=\s+$)')
+
+          # Extract annotations/error message
+          annotations=$(gh run view ${{ github.run_id }} | awk '/^X/{flag=1; next} /^ /{flag=0} flag')
+
+          echo "Failed Job= $failed_job"
+          echo "Failed Step= $failed_step"
+          echo "Annotations/Error Message= $annotations"
 
         env:
             GH_TOKEN: ${{ github.token }}
