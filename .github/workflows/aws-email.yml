@@ -55,6 +55,8 @@ jobs:
          if grep -q '^X ' runDetails.txt
           then
              echo Workflow failed
+             echo --------------Failure cause and Failed Job------------------
+             grep -A5000 -m1 -e 'ANNOTATIONS' runDetails.txt
           else
              echo Workflow is success
           fi
