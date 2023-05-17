@@ -86,16 +86,17 @@ jobs:
           echo $STATUSVALUE is STATUSVALUE
           echo $JobName is JobName
          
-          sed -i "s#RepoNameValue#$RepoName#g" message.json
-          sed -i "s#JobName#$JobName#g" message.json
-          sed -i "s#STATUSVALUE#$STATUSVALUE#g" message.json
-          sed -i "s#BranchValue#$BranchName#g" message.json
-          sed -i "s#BuildNoValue#$BuildNumber#g" message.json
-          sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
+          sed -i "s#RepoNameValue#$RepoName#g" message.html
+          sed -i "s#JobName#$JobName#g" message.html
+          sed -i "s#STATUSVALUE#$STATUSVALUE#g" message.html
+          sed -i "s#BranchValue#$BranchName#g" message.html
+          sed -i "s#BuildNoValue#$BuildNumber#g" message.html
+          sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.html
       
       - name: Step1
         run: |
-          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com  --subject "subject of email" --html file://message.html
+          subject="JobName-BuildNoValue-VersionNumber-status STATUSVALUE"
+          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com  --subject "$subject" --html file://message.html
           
           
           
