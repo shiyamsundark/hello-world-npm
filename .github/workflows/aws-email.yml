@@ -95,7 +95,7 @@ jobs:
       
       - name: Step1
         run: |
-          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com --html file://message.html
+          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com  --message file://message.json --html file://message.html
           
           
           
