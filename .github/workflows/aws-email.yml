@@ -47,7 +47,16 @@ jobs:
       
       - name: Get workflow run details
         run: |                
-         gh run view ${{ github.run_id }}
+         gh run view ${{ github.run_id }} >> runDetails.txt
+         echo ----------------------------------
+         cat runDetails.txt
+         echo -----------------------------------
+         if grep -q '^X ' runDetails.txt
+          then
+              Workflow failed
+          else
+             Workflow is success
+          fi
 
         env:
             GH_TOKEN: ${{ github.token }}
