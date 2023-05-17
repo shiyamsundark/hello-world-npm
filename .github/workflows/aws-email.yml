@@ -100,7 +100,7 @@ jobs:
       
       - name: Step1
         run: |
-          
+          subject=${{ steps.subid.outputs.subject }}
           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com  --subject "$subject" --html file://message.html
           
           
