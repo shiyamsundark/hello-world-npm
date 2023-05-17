@@ -80,13 +80,14 @@ jobs:
           RepoName=${{ github.repository }}
           BranchName=${{ github.ref_name }}
           STATUSVALUE=${{ steps.email.outputs.STATUSVALUE }}
-          ErrorDetails=${{ steps.email.outputs.ErrorDetails }}
+          ErrorDetails=$(grep -A5000 -m1 -e 'ANNOTATIONS' runDetails.txt)
           echo $STATUSVALUE is STATUSVALUE
           echo $JobName is JobName
          
           sed -i "s#RepoNameValue#$RepoName#g" message.json
           sed -i "s#JobName#$JobName#g" message.json
           sed -i "s#STATUSVALUE#$STATUSVALUE#g" message.json
+          sed -i "s#ErrorDetails#$ErrorDetails#g" message.json
           sed -i "s#BranchValue#$BranchName#g" message.json
           sed -i "s#BuildNoValue#$BuildNumber#g" message.json
           sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
