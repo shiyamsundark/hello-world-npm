@@ -53,9 +53,9 @@ jobs:
          echo -----------------------------------
          if grep -q '^X ' runDetails.txt
           then
-              Workflow failed
+             echo Workflow failed
           else
-             Workflow is success
+             echo Workflow is success
           fi
 
         env:
