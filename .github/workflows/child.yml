@@ -1,7 +1,7 @@
 name: Memory
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs: 
   Memory: 
@@ -11,15 +11,7 @@ jobs:
   
      - run: |
         
-        echo 'latin string' > yourfileInUTF8
-        ls -lrta
-        echo =====================file=================
-        cat yourfileInUTF8
-        echo =============iconv=================
-        iconv --verbose -t utf-8 yourfileInUTF8
-        echo ============================
+        echo testing
         
-         echo ${{ secrets.UTF_TEST }}
-         TOKEN=$(echo -n '${{ secrets.UTF_TEST }}' | base64 )
-         echo $TOKEN
+
      
