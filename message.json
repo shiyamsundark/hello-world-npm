@@ -1,6 +1,6 @@
 {
    "Subject": {
-       "Data": "JobName-BuildNoValue-VersionNumber-status STATUS",
+       "Data": "JobName-BuildNoValue-VersionNumber-status STATUSVALUE",
        "Charset": "UTF-8"
    },
    "Body": {
