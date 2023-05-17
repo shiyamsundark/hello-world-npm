@@ -12,7 +12,6 @@ jobs:
           echo ${{ job.status }}
           JOB_ID=${{ github.job }}
           echo $JOB_ID is JOB_ID
-          exit 1
           
   Job2:
     runs-on: ubuntu-latest
