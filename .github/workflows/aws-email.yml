@@ -23,6 +23,7 @@ jobs:
     outputs:
         STATUSVALUE: ${{ steps.email.outputs.STATUSVALUE }}
         ErrorDetails: ${{ steps.email.outputs.ErrorDetails }}
+        subject: ${{ steps.subid.outputs.subject }}
     if: always()
     needs: [Job1,Job2]
     steps:
@@ -71,6 +72,7 @@ jobs:
             GH_TOKEN: ${{ github.token }}
                    
       - name: Edit json file
+        id: subid
         run: |
           Runid=${{ github.run_id }}
           #echo -------------------------
@@ -82,7 +84,8 @@ jobs:
           RepoName=${{ github.repository }}
           BranchName=${{ github.ref_name }}
           STATUSVALUE=${{ steps.email.outputs.STATUSVALUE }}
-          ErrorDetails=$(grep -A5000 -m1 -e 'ANNOTATIONS' runDetails.txt)
+          subject="${JobName}-${BuildNumber}-{VersionNumber}-status ${STATUSVALUE}"
+          echo $subject is subject
           echo $STATUSVALUE is STATUSVALUE
           echo $JobName is JobName
          
@@ -92,10 +95,12 @@ jobs:
           sed -i "s#BranchValue#$BranchName#g" message.html
           sed -i "s#BuildNoValue#$BuildNumber#g" message.html
           sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.html
+          
+          echo "subject=$subject" >> $GITHUB_OUTPUT
       
       - name: Step1
         run: |
-          subject="JobName-BuildNoValue-VersionNumber-status STATUSVALUE"
+          
           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com  --subject "$subject" --html file://message.html
           
           
