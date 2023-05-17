@@ -50,7 +50,7 @@ jobs:
           
           output=$(gh run view ${{ github.run_id }})  # Replace <run_id> with the actual ID of the GitHub Actions run
 
-         
+          echo $output
           echo "Failed Job: $failed_job"
           echo "Failed Step: $failed_step"
           echo "Annotations/Error Message: $annotations"
