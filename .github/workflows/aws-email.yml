@@ -12,16 +12,17 @@ jobs:
           echo ${{ job.status }}
           JOB_ID=${{ github.job }}
           echo $JOB_ID is JOB_ID
-          exit 1
+          
           
   Job2:
-    runs-on: ubuntu-latest
     needs: Job1
-    steps:
-      - run: |
-          echo $JOB_ID is JOB_ID      
+    uses: ./.github/workflows/child.yml
+    
   Job3:
     runs-on: ubuntu-latest
+    outputs:
+        STATUSVALUE: ${{ steps.email.outputs.STATUSVALUE }}
+        ErrorDetails: ${{ steps.email.outputs.ErrorDetails }}
     if: always()
     needs: [Job1,Job2]
     steps:
@@ -47,6 +48,7 @@ jobs:
           echo $JOB_ID is JOB_ID
       
       - name: Get workflow run details
+        id: email
         run: |                
          gh run view ${{ github.run_id }} >> runDetails.txt
          echo ----------------------------------
@@ -54,40 +56,43 @@ jobs:
          echo -----------------------------------
          if grep -q '^X ' runDetails.txt
           then
-             echo Workflow failed
+             STATUSVALUE="failed"
              echo --------------Failure cause and Failed Job------------------
-             grep -A5000 -m1 -e 'ANNOTATIONS' runDetails.txt
+             ErrorDetails=$(grep -A5000 -m1 -e 'ANNOTATIONS' runDetails.txt)
+             echo $ErrorDetails
           else
-             echo Workflow is success
+             STATUSVALUE="success"
           fi
-
+          echo "STATUSVALUE=$STATUSVALUE" >> $GITHUB_OUTPUT
+          echo "ErrorDetails=$ErrorDetails" >> $GITHUB_OUTPUT
         env:
             GH_TOKEN: ${{ github.token }}
-            
-   
-          
-#       - name: Edit json file
-#         run: |
-#           Runid=${{ github.run_id }}
-#           echo -------------------------
-#           curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-#           echo ------------------------------
-#           JobName=$(curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}" | jq -r '.name' )
-#           BuildNumber=${{ github.run_number }}
-#           GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-#           RepoName=${{ github.repository }}
-#           BranchName=${{ github.ref_name }}
-#           echo $JobName is JobName
+                   
+      - name: Edit json file
+        run: |
+          Runid=${{ github.run_id }}
+          echo -------------------------
+          curl -s "https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ------------------------------
+          JobName=$(curl -s "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/${Runid}" | jq -r '.name' )
+          BuildNumber=${{ github.run_number }}
+          GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          RepoName=${{ github.repository }}
+          BranchName=${{ github.ref_name }}
+          STATUSVALUE=${{ steps.email.outputs.STATUSVALUE }}
+          ErrorDetails=${{ steps.email.outputs.ErrorDetails }}
+          echo $STATUSVALUE is STATUSVALUE
+          echo $JobName is JobName
          
-#           sed -i "s#RepoNameValue#$RepoName#g" message.json
-#           sed -i "s#JobName#$JobName#g" message.json
-#           sed -i "s#BranchValue#$BranchName#g" message.json
-#           sed -i "s#BuildNoValue#$BuildNumber#g" message.json
-#           sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
+          sed -i "s#RepoNameValue#$RepoName#g" message.json
+          sed -i "s#JobName#$JobName#g" message.json
+          sed -i "s#BranchValue#$BranchName#g" message.json
+          sed -i "s#BuildNoValue#$BuildNumber#g" message.json
+          sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.json
       
-#       - name: Step1
-#         run: |
-#           aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com --message file://message.json
+      - name: Step1
+        run: |
+          aws ses send-email --from athulyams2000@gmail.com --destination ToAddresses=athulyams2000@gmail.com --message file://message.json
           
           
           
