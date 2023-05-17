@@ -64,7 +64,7 @@ jobs:
              STATUSVALUE="success"
           fi
           echo "STATUSVALUE=$STATUSVALUE" >> $GITHUB_OUTPUT
-          echo "ErrorDetails=$ErrorDetails" >> $GITHUB_OUTPUT
+         
         env:
             GH_TOKEN: ${{ github.token }}
                    
