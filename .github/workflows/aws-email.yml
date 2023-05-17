@@ -12,13 +12,14 @@ jobs:
           echo ${{ job.status }}
           JOB_ID=${{ github.job }}
           echo $JOB_ID is JOB_ID
+          exit 1
           
   Job2:
     runs-on: ubuntu-latest
     needs: Job1
     steps:
       - run: |
-          exit 1      
+          echo $JOB_ID is JOB_ID      
   Job3:
     runs-on: ubuntu-latest
     if: always()
@@ -46,20 +47,8 @@ jobs:
           echo $JOB_ID is JOB_ID
       
       - name: Get workflow run details
-        run: |
-          
-      
-          failed_job=$(gh run view ${{ github.run_id }} | grep -oP 'X \K\S+(?=\s+in)')
-
-          # Extract failed step name
-          failed_step=$(gh run view ${{ github.run_id }} | grep -oP 'X \K\S+(?=\s+$)')
-
-          # Extract annotations/error message
-          annotations=$(gh run view ${{ github.run_id }} | awk '/^X/{flag=1; next} /^ /{flag=0} flag')
-
-          echo "Failed Job= $failed_job"
-          echo "Failed Step= $failed_step"
-          echo "Annotations/Error Message= $annotations"
+        run: |                
+         gh run view ${{ github.run_id }}
 
         env:
             GH_TOKEN: ${{ github.token }}
