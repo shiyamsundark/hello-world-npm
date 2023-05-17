@@ -52,9 +52,9 @@ jobs:
         run: |                
          gh run view ${{ github.run_id }} --json status
          gh run view ${{ github.run_id }} --json conclusion
-         gh run view ${{ github.run_id }} >> runDetails.txt
+         gh run view ${{ github.run_id }} >> runDetails.json
          echo ----------------------------------
-         cat runDetails.txt
+         cat runDetails.json
          echo -----------------------------------
          if grep -q '^X ' runDetails.txt
           then
