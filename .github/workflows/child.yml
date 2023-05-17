@@ -1,4 +1,4 @@
-name: Memory
+name: Child
 
 on:
   workflow_call:
@@ -12,6 +12,7 @@ jobs:
      - run: |
         
         echo testing
+        exit 1
         
 
      
