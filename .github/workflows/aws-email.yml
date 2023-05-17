@@ -50,15 +50,7 @@ jobs:
           
           output=$(gh run view ${{ github.run_id }})  # Replace <run_id> with the actual ID of the GitHub Actions run
 
-          # Extract failed job name
-          failed_job=$(echo "$output" | grep -oP 'X \K\S+(?=\s+in)')
-
-          # Extract failed step name
-          failed_step=$(echo "$output" | grep -oP 'X \K\S+(?=\s+$)')
-
-          # Extract annotations/error message
-          annotations=$(echo "$output" | awk '/^X/{flag=1; next} /^ /{flag=0} flag')
-
+         
           echo "Failed Job: $failed_job"
           echo "Failed Step: $failed_step"
           echo "Annotations/Error Message: $annotations"
