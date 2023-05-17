@@ -50,7 +50,8 @@ jobs:
       - name: Get workflow run details
         id: email
         run: |                
-         gh run view ${{ github.run_id }} --json
+         gh run view ${{ github.run_id }} --json status
+         gh run view ${{ github.run_id }} --json conclusion
          gh run view ${{ github.run_id }} >> runDetails.txt
          echo ----------------------------------
          cat runDetails.txt
