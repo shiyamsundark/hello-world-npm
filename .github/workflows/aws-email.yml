@@ -87,7 +87,7 @@ jobs:
           echo $STATUSVALUE is STATUSVALUE
           echo $JobName is JobName
           
-          gh run view ${{ github.run_id }} >> runDetails.txt
+
           sed -i "/<pre>/r runDetails.txt" message.html
           echo -------------------------
           cat message.html
