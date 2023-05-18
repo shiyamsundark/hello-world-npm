@@ -83,6 +83,7 @@ jobs:
           GITHUB_WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           RepoName=${{ github.repository }}
           BranchName=${{ github.ref_name }}
+          ActorName=${{ github.actor }}
           STATUSVALUE=${{ steps.email.outputs.STATUSVALUE }}
           subject="${JobName}-${BuildNumber}-{VersionNumber}-status ${STATUSVALUE}"
           echo $subject is subject
@@ -99,6 +100,7 @@ jobs:
           sed -i "s#JobName#$JobName#g" message.html
           sed -i "s#STATUSVALUE#$STATUSVALUE#g" message.html
           sed -i "s#BranchValue#$BranchName#g" message.html
+          sed -i "s#ActorValue#$ActorName#g" message.html
           sed -i "s#BuildNoValue#$BuildNumber#g" message.html
           sed -i "s#buildurl#$GITHUB_WORKFLOW_URL#g" message.html
           
