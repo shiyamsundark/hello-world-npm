@@ -27,7 +27,7 @@ jobs:
       
      Send-email:
        if: always()
-       needs: [TestJob]         
+       needs: [TestJob,Job2]         
        uses: ./.github/workflows/aws-email.yml
        secrets:
           AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID  }}
