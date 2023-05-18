@@ -4,16 +4,39 @@ on:
   workflow_dispatch:
 
 jobs: 
-  listStaleBranches:
+  StaleNotification:
     runs-on: ubuntu-latest
     steps:
-          
-      - name: List stale branches
+      - uses: actions/checkout@v2
+      - name: Creating branch details file
         run:  |
-            git clone https://github.com/2115-27/hello-world-npm.git
-            cd hello-world-npm/
-            echo ----git branch -av----
-            git branch -av
-            curl -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/2115-27/hello-world-npm/branches
-        env:
-           GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
+          ls -lrta
+          REPO_NAME=${{ github.event.repository.name }}
+          git clone https://github.com/2115-27/$REPO_NAME.git
+          cd $REPO_NAME/
+          
+          git branch -a --sort=-committerdate  --format='%(refname:short) |%(authorname)| %(committerdate:short)'| sed /\${{ github.ref_name }}/d>> ${{ github.workspace }}/BranchDetails.txt
+          sed -i "s~origin/~~g" ${{ github.workspace }}/BranchDetails.txt
+          sed -i "s~,~~g" ${{ github.workspace }}/BranchDetails.txt
+          
+          echo -----------BranchDetails.txt---------------
+          cat ${{ github.workspace }}/BranchDetails.txt
+          
+          awk 'BEGIN{ FS= "|"; OFS=","; print "Branch,Last Committer Name,Committer Date"}; NR > 0{print $1, $2, $3;}' ${{ github.workspace }}/BranchDetails.txt > ${{ github.workspace }}/BranchList.csv
+          
+          echo --------BranchList.csv---------------
+          cat ${{ github.workspace }}/BranchList.csv
+      
+      - name: Upload BranchList.csv as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: BranchList.csv
+          path: ${{ github.workspace }}/BranchList.csv  
+          
+  Send-email:
+       if: always()
+       needs: [StaleNotification]         
+       uses: ./.github/workflows/aws-email.yml
+       secrets:
+          AWS_ACCESS_KEY_ID : ${{ secrets.AWS_ACCESS_KEY_ID  }}
+          AWS_SECRET_ACCESS_KEY : ${{ secrets.AWS_SECRET_ACCESS_KEY  }}      
