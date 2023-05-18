@@ -9,28 +9,22 @@ on:
         required: true  
 
 jobs:
-  Job1:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo test
-          echo ${{ job.status }}
-          JOB_ID=${{ github.job }}
-          echo $JOB_ID is JOB_ID
-          
-          
+#   Job1:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: |
+#           echo test
+#           echo ${{ job.status }}
+#           JOB_ID=${{ github.job }}
+#           echo $JOB_ID is JOB_ID
+         
   Job2:
-    needs: Job1
-    uses: ./.github/workflows/child.yml
-    
-  Job3:
     runs-on: ubuntu-latest
     outputs:
         STATUSVALUE: ${{ steps.email.outputs.STATUSVALUE }}
         ErrorDetails: ${{ steps.email.outputs.ErrorDetails }}
         subject: ${{ steps.subid.outputs.subject }}
     if: always()
-    needs: [Job1,Job2]
     steps:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
