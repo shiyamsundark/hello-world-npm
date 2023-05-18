@@ -51,8 +51,6 @@ jobs:
       - name: Get workflow run details
         id: email
         run: |                
-         gh run view ${{ github.run_id }} --json status
-         gh run view ${{ github.run_id }} --json conclusion
          gh run view ${{ github.run_id }} >> runDetails.txt
          echo ----------------------------------
          cat runDetails.txt
@@ -90,9 +88,10 @@ jobs:
           echo $JobName is JobName
           
           gh run view ${{ github.run_id }} >> runDetails.txt
-          templ=$(<message.html)
-          value=$(<runDetails.txt)
-          echo "${templ//__PLACEHOLDER__/$value}" > message.html
+          sed -i "/<pre>/r runDetails.txt" message.html
+          echo -------------------------
+          cat message.html
+          echo ---------------------------
 
           sed -i "s#RepoNameValue#$RepoName#g" message.html
           sed -i "s#JobName#$JobName#g" message.html
