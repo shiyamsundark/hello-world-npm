@@ -23,18 +23,18 @@ jobs:
     jdk-version:      
         runs-on: ubuntu-latest
         steps: 
-          -  run: java -version 
+#           -  run: java -version 
 
-    RefreshDynaJS:
-          name: Refresh Dynatrace js
-          needs: jdk-version
-          uses: ./.github/workflows/test-refresh-dynatrace-js.yml
-          with:
-           environment: ${{ github.event.inputs.environment }}
+#     RefreshDynaJS:
+#           name: Refresh Dynatrace js
+#           needs: jdk-version
+#           uses: ./.github/workflows/test-refresh-dynatrace-js.yml
+#           with:
+#            environment: ${{ github.event.inputs.environment }}
 
 
     testJob2: 
-          needs: [RefreshDynaJS]
+#           needs: [RefreshDynaJS]
           runs-on: ubuntu-latest
           steps: 
-            -  run: echo testing
+            -  run: echo ${{ github.workflow }} is workflow name 
