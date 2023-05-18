@@ -58,9 +58,6 @@ jobs:
          if grep -q '^X ' runDetails.txt
           then
              STATUSVALUE="failed"
-             echo --------------Failure cause and Failed Job------------------
-             ErrorDetails=$(grep -A5000 -m1 -e 'ANNOTATIONS' runDetails.txt)
-             echo $ErrorDetails
           else
              STATUSVALUE="success"
           fi
@@ -87,7 +84,7 @@ jobs:
           echo $STATUSVALUE is STATUSVALUE
           echo $JobName is JobName
           
-
+          echo ----------Adding workflow details to html--------------
           sed -i "/<pre>/r runDetails.txt" message.html
           echo -------------------------
           cat message.html
