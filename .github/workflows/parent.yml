@@ -21,8 +21,12 @@ jobs:
       steps:   
         - run: echo testing parent 
      
+     Job2:
+      needs: TestJob
+      uses: ./.github/workflows/child.yml
+      
      Send-email:
- 
+       if: always()
        needs: [TestJob]         
        uses: ./.github/workflows/aws-email.yml
        secrets:
