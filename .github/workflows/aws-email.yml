@@ -1,7 +1,7 @@
 name: Email action
 
 on:
-  workflow_dispatch:  
+  workflow_call:  
 
 jobs:
   Job1:
