@@ -21,10 +21,10 @@ jobs:
       steps:   
         - run: echo testing parent 
      
-     Child:
+     Send-email:
  
        needs: [TestJob]         
-       uses: 2115-27/java-maven-sample-war/.github/workflows/child.yml@master
+       uses: ./.github/workflows/aws-email.yml
        
          
          
