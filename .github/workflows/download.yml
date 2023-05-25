@@ -14,12 +14,12 @@ jobs:
     - run: |
         npm install @2115-27/hello-world-npm-pkg@22.2.96
         ls -lrta
-#     - name: unzip      
-#       run:  |
+    - name: unzip      
+      run:  |
          
-#           ls -lrta
-#           unzip *.zip
-#           ls -lrta
+          ls -lrta
+          unzip *.zip
+          ls -lrta
 #     - name: list contents of .tgz  
 #       run:    tar -ztvf hello-world-npm-pkg-22.2.96-npm.tgz
 #     - name: list contents of hello-world-npm-pkg
