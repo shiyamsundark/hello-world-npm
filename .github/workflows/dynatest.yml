@@ -23,6 +23,11 @@ jobs:
 
                 cat pr-info.json 
                 
+                echo ------------------------commits.md---------------------------------
+                jq -r '.[] | "| \(.authors[0].name) | \(.messageHeadline) | \(.oid) |"' pr-info.json > commits.md
+                
+                cat commits.md
+                
                 
             env:
                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
