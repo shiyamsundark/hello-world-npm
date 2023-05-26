@@ -19,7 +19,7 @@ jobs:
                 echo ------------------commits---------------------
                 gh pr view --json commits
                 echo ----------------------file--------------------
-                gh pr view -c --json number,title,author,body --jq '.number,.title,.author,.body' > pr-info.json
+                gh pr view -c --json number,title,author,commits --jq '.number,.title,.author,.commits' > pr-info.json
 
                 cat pr-info.json 
                 echo -----------------view command---------------------
