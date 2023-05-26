@@ -20,5 +20,8 @@ jobs:
                 gh pr view -c --json number,title,author,body --jq '.number,.title,.author,.body' > pr-info.json
 
                 cat pr-info.json 
+                echo #####################################################
+                gh pr view
+                
             env:
                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
