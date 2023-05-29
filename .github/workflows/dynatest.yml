@@ -46,7 +46,9 @@ jobs:
           - run: |
               pwd 
               ls -lrta
-              cp ${{ github.workspace }}/commits.md .
+              cd ..
+              ls -lrta
+              cp commits.md ./Current-branch
               git add commits.md
               git commit -m "Changes in recent PR"
               git push origin base-branch
