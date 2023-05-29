@@ -26,8 +26,9 @@ jobs:
                 echo $PRNumber is PRNumber
                 url="https://github.com/${{ github.repository }}/pull/$PRNumber/commits/"
                 echo $url is url
-                jq -r --arg url "$url" '.[] | "| \(.authors[0].name) | \(.messageHeadline) | [\("details")](\($url + "/" + .oid)) |"' pr-info.json > commits.md
-                
+                #jq -r --arg url "$url" '.[] | "| \(.authors[0].name) | \(.messageHeadline) | [\("details")](\($url + "/" + .oid)) |"' pr-info.json > commits.md
+                jq -r '.[] | "- \(.authors[0].name) - \(.messageHeadline) - \[\("details")](\($url + "/" + .oid))"' pr-info.json | while IFS= read -r line; do echo "$line" >> commits.md; done
+
                 cat commits.md
                 
                
