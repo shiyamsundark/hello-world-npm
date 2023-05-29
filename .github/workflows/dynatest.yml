@@ -51,6 +51,11 @@ jobs:
               cd Current-branch/
               ls -lrta
               
+          - name: Set identity and push
+            run: |
+              git config user.name "${{ runner.name }}"
+              git config user.email "$(hostname -f)"  
+              
               git add commits.md
               git commit -m "Changes in recent PR"
               git push origin base-branch
