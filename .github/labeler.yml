@@ -10,3 +10,5 @@ typescript:
 
 HTML:
   - any: ['src/**/*.html']
+  
+  
