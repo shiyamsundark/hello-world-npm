@@ -32,3 +32,5 @@
 | 2115-27 | Update dynatest.yml | [details]($url/df68a9f6e1d14b5a8ef7628d9bbfa5d97ac0419a) |
 | GitHub Actions 4 | Changes in recent PR | [details]($url/9e8d2923c31759b205cef46b7e0a3d438743b3a9) |
 | 2115-27 | Update dynatest.yml | [details]($url/74b407c21d80ccef6528b89bfbcb678693807ded) |
+| GitHub Actions 4 | Changes in recent PR | [details]($url/a9c33b2f3dc9f4f6558c22eaf1c00f54ac4b8a3f) |
+| 2115-27 | Update dynatest.yml | [details]($url/f387fec69ca5076566040cb8ff0b0340bcb8b833) |
