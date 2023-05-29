@@ -1,10 +1,8 @@
 name: DYNA_TEST
 on:
     - pull_request
-  
           
 jobs:
-
         PR-commits:
 
           runs-on: ubuntu-latest
@@ -27,7 +25,21 @@ jobs:
                 jq -r '.[] | "| \(.authors[0].name) | \(.messageHeadline) | \(.oid) |"' pr-info.json > commits.md
                 
                 cat commits.md
-                
-                
+          
+          - run: |
+              mkdir Current-branch
+              cd Current-branch/
+          
+          - name: Checkout branch
+            uses: actions/checkout@v3
+            with: 
+              ref: '${{ github.ref_name }}'
+          
+          - run: |
+              cp commits.md .
+              git add commits.md
+              git commit -m "Changes in recent PR"
+              git push origin ${{ github.ref_name }}
+               
             env:
                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
