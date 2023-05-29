@@ -20,7 +20,12 @@ jobs:
                 gh pr view -c --json commits --jq '.commits' > pr-info.json
 
                 cat pr-info.json 
-
+                
+                echo -----------deleting already existing commits.md file--------------------
+                if [ -f "commits.md" ]; then
+                    rm "commits.md"
+                fi
+                
                 echo ------------------------commits.md---------------------------------
                 PRNumber=$(gh pr view -c --json number --jq '.number')
                 echo $PRNumber is PRNumber
