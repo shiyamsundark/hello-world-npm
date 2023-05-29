@@ -28,7 +28,7 @@ jobs:
                 echo $url is url
                 jq -r --arg url "$url" '.[] | "| \(.authors[0].name) | \(.messageHeadline) | [\("details")](\($url + "/" + .oid)) |"' pr-info.json > commits.md
                 
-                nl -w1 -s'. ' commits.md | sed -i 's/^\s*\([0-9]\+\)\.\s*|/\1. |/'
+                nl -w1 -s'. ' commits.md | sed -i 's/^\s*\([0-9]\+\)\.\s*|/\1. |/' commits.md
                 
                 cat commits.md
                 
