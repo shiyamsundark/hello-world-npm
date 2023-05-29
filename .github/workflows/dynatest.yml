@@ -26,6 +26,9 @@ jobs:
                 
                 cat commits.md
           
+            env:
+               GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }} 
+               
           - run: |
               mkdir Current-branch
               cd Current-branch/
