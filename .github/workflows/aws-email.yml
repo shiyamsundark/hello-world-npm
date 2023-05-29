@@ -86,7 +86,9 @@ jobs:
           echo $JobName is JobName
           
           echo ----------Adding workflow details to html--------------
-          sed -i "/<pre>/r runDetails.txt" message.html
+          sed -i '/<pre id="run-details">/r runDetails.txt' message.html
+
+          #sed -i "/<pre>/r runDetails.txt" message.html
           echo -------------------------
           cat message.html
           echo ---------------------------
