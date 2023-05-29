@@ -22,7 +22,10 @@ jobs:
                 cat pr-info.json 
                 
                 echo ------------------------commits.md---------------------------------
-                jq -r '.[] | "| \(.authors[0].name) | \(.messageHeadline) | \(.oid) |"' pr-info.json > commits.md
+                PRNumber=$(gh pr view -c --json number --jq '.number')
+                echo $PRNumber is PRNumber
+                url="https://github.com/${{ github.repository }}/pull/$PRNumber/commits/"
+                jq -r --arg url "$url" '.[] | "| \(.authors[0].name) | \(.messageHeadline) | \($url)\(.oid) |"' pr-info.json > commits.md
                 
                 cat commits.md
           
