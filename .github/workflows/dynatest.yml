@@ -51,9 +51,9 @@ jobs:
               cd Current-branch/
               ls -lrta
               
-              #git add commits.md
-              #git commit -m "Changes in recent PR"
-              #git push origin base-branch
+              git add commits.md
+              git commit -m "Changes in recent PR"
+              git push origin base-branch
                
             env:
                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
