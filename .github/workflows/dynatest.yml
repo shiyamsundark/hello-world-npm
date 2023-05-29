@@ -58,7 +58,7 @@ jobs:
               
               git add commits.md
               git commit -m "Changes in recent PR"
-              git push origin base-branch
+              git push origin branch-for-pr
                
             env:
                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
