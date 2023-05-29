@@ -33,6 +33,9 @@ jobs:
               pwd
               ls -lrta
               mkdir Current-branch
+              echo ---------------current branch is here-------------
+              pwd
+              ls -lrta
               cd Current-branch/
               echo ##################################################
               pwd
@@ -48,7 +51,7 @@ jobs:
               ls -lrta
               cd ..
               ls -lrta
-              cp commits.md ./Current-branch
+              cp hello-world-npm/commits.md ./Current-branch
               git add commits.md
               git commit -m "Changes in recent PR"
               git push origin base-branch
