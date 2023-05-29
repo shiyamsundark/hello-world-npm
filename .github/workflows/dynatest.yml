@@ -25,9 +25,10 @@ jobs:
                 PRNumber=$(gh pr view -c --json number --jq '.number')
                 echo $PRNumber is PRNumber
                 url="https://github.com/${{ github.repository }}/pull/$PRNumber/commits/"
-                jq -r --arg url "$url" '.[] | "| \(.authors[0].name) | \(.messageHeadline) | [details]($url\(.oid)) |"' pr-info.json > commits.md
+                jq -r --arg url "$url" '.[] | "| \(.authors[0].name) | \(.messageHeadline) | [\("details")]($url/\(.oid)) |"' pr-info.json > commits.md
                 
                 cat commits.md
+                
                 
           
             env:
