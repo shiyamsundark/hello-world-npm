@@ -36,25 +36,24 @@ jobs:
               echo ---------------current branch is here-------------
               pwd
               ls -lrta
-              cd Current-branch/
-              echo ##################################################
-              pwd
-              ls -lrta
+
           
           - name: Checkout branch
             uses: actions/checkout@v3
             with: 
               ref: 'base-branch'
+              path: 'Current-branch'
           
           - run: |
               pwd 
               ls -lrta
-              cd ..
+              cp commits.md Current-branch
+              cd Current-branch/
               ls -lrta
-              cp hello-world-npm/commits.md ./Current-branch
-              git add commits.md
-              git commit -m "Changes in recent PR"
-              git push origin base-branch
+              
+              #git add commits.md
+              #git commit -m "Changes in recent PR"
+              #git push origin base-branch
                
             env:
                GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}     
