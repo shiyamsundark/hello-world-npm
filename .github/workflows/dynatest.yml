@@ -34,6 +34,9 @@ jobs:
               ls -lrta
               mkdir Current-branch
               cd Current-branch/
+              echo ##################################################
+              pwd
+              ls -lrta
           
           - name: Checkout branch
             uses: actions/checkout@v3
