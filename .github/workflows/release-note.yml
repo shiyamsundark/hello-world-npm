@@ -8,6 +8,9 @@ jobs:
   Release-note:
     runs-on: ubuntu-latest
     steps:
+    
+      - uses: actions/checkout@v3
+      
       - run: |
           echo "file content" > commits.md
           echo --------------------------------------
