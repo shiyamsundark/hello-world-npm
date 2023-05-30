@@ -16,7 +16,7 @@ jobs:
           echo --------------------------------------
           cat commits.md
           echo -------------------------------------
-          gh release edit 9.9.9 --notes @commits.md
+          gh release edit 9.9.9 --notes "$(cat commits.md)"
        
         env:
        
