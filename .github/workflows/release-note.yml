@@ -1,0 +1,22 @@
+name: Generate-Release-note
+
+on:
+  workflow_dispatch:
+  
+
+jobs:
+  Release-note:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "file content" > commits.md
+          echo --------------------------------------
+          cat commits.md
+          echo -------------------------------------
+          gh release create 9.9.9 --notes @commits.md
+       
+        env:
+       
+          GITHUB_TOKEN: ${{ secrets.COMMIT_SECRET }}
+         
+ 
