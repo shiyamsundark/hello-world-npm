@@ -27,6 +27,7 @@ jobs:
       
      Job3:
        needs: Job2
+       if: always()
        uses: ./.github/workflows/child2.yml
        
          
