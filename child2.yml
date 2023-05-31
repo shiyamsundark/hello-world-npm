@@ -1,0 +1,13 @@
+name: Child2
+
+on:
+  workflow_call:
+
+jobs: 
+  Child2: 
+    runs-on: ubuntu-latest
+    steps:
+
+  
+     - run: |
+        echo ${{ needs.Child.result }} is Child status
