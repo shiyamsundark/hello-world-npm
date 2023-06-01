@@ -11,6 +11,7 @@ jobs:
   
      - run: |
         echo failing child job
+        echo ${{ github.workflow }} is workflow name
         exit 1
         
         
