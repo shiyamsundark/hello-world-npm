@@ -23,7 +23,7 @@ jobs:
      
      Job2:
       needs: TestJob
-      if: ${{ always() && needs.TestJob.result == 'skip' }}
+#       if: ${{ always() && needs.TestJob.result == 'skip' }}
       uses: ./.github/workflows/child.yml
       
      Job3:
