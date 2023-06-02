@@ -23,7 +23,7 @@ jobs:
      
      Job2:
       needs: TestJob
-      if: ${{ needs.TestJob.result == failure }}
+      if: ${{ needs.TestJob.result == 'failure' }}
       uses: ./.github/workflows/child.yml
       
      Job3:
