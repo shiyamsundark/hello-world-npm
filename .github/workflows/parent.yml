@@ -23,12 +23,12 @@ jobs:
      
      Job2:
       needs: TestJob
-#       if: ${{ always() && needs.TestJob.result == 'failure' }}
+#       if: ${{ always() && needs.TestJob.result == 'skip' }}
       uses: ./.github/workflows/child.yml
       
      Job3:
        needs: Job2
-       if: ${{ always() && needs.Job2.result == 'failure' }}
+       if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
        uses: ./.github/workflows/child2.yml
        
          
