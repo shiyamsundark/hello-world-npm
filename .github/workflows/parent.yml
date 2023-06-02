@@ -30,6 +30,7 @@ jobs:
        needs: Job2
        if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
        uses: ./.github/workflows/child2.yml
-       
+       with:
+         status: ${{ needs.Job2.result }}
          
          
