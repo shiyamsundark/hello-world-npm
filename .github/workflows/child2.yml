@@ -2,6 +2,10 @@ name: Child2
 
 on:
   workflow_call:
+    inputs:
+      status:
+        required: true
+        type: string
 
 jobs: 
   Child2: 
@@ -10,4 +14,4 @@ jobs:
 
   
      - run: |
-        echo ${{ needs.Child.result }} is Child status
+        echo ${{ inputs.status }} is Child status
