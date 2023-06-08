@@ -19,18 +19,21 @@ jobs:
       runs-on: ubuntu-latest
 #       needs: [Set_ReleaseVersion_Variable]
       steps:   
-        - run: echo testing parent 
+        - run: |
+           echo testing parent 
+           Start_Date=$(date +"%-m/%-d/%Y 10:00 AM")
+           echo $Start_Date is Start_Date
      
-     Job2:
-      needs: TestJob
-#       if: ${{ always() && needs.TestJob.result == 'skip' }}
-      uses: ./.github/workflows/child.yml
+#      Job2:
+#       needs: TestJob
+# #       if: ${{ always() && needs.TestJob.result == 'skip' }}
+#       uses: ./.github/workflows/child.yml
       
-     Job3:
-       needs: Job2
-       if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
-       uses: ./.github/workflows/child2.yml
-       with:
-         status: ${{ needs.Job2.result }}
+#      Job3:
+#        needs: Job2
+#        if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
+#        uses: ./.github/workflows/child2.yml
+#        with:
+#          status: ${{ needs.Job2.result }}
          
          
