@@ -1,6 +1,15 @@
 name: Parentworkflow
 on:
   workflow_dispatch:
+    inputs: 
+       Deployment-Slot:
+          description: 'Deployment Slot'
+          type: choice
+          required: true
+          options:
+            - 12:00 PM
+            - 7:15 PM
+    
 jobs:
    
 #      Set_ReleaseVersion_Variable: 
@@ -20,9 +29,10 @@ jobs:
 #       needs: [Set_ReleaseVersion_Variable]
       steps:   
         - run: |
-           echo testing parent 
-           Start_Date=$(date +"%-m/%-d/%Y 10:00 AM")
-           echo $Start_Date is Start_Date
+           
+           timedatectl set-time 'date +"%-m/%-d/%Y 12:00 PM'
+           echo ----------------------------------------------
+           timedatectl
      
 #      Job2:
 #       needs: TestJob
