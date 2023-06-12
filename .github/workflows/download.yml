@@ -8,5 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
+       sudo timedatectl set-timezone CET
        timedatectl
        timedatectl >> time.txt
+       echo -----------------------------
+       cat time.txt
