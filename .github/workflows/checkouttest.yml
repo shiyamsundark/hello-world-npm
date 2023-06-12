@@ -1,6 +1,7 @@
 name: checkout_test
 on:
-  workflow_dispatch:
+  schedule:
+     - cron: '0 12,15 * * *'
 
 jobs:
   Test:
@@ -16,4 +17,4 @@ jobs:
           ref: ${{ github.head_ref }}
       
       - run: |
-          ls -lrta     
+          ls -lrta  
