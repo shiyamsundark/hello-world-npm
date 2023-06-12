@@ -1,7 +1,8 @@
 name: checkout_test
 on:
+  workflow_dispatch:
   schedule:
-     - cron: '0 15,16 * * *'
+     - cron: '0 15,18 * * *'
 
 jobs:
   Test:
