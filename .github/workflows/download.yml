@@ -13,3 +13,15 @@ jobs:
        timedatectl >> time.txt
        echo -----------------------------
        cat time.txt
+       
+       local_time=$(grep "Local time:" time.txt | awk '{print $4, $5}')
+       universal_time=$(grep "Universal time:" time.txt | awk '{print $4, $5}')
+       
+       echo $local_time is local_time
+       echo $universal_time is universal_time
+
+       date_diff=$(($(date -d "$local_time" +%s) - $(date -d "$universal_time" +%s)))
+       time_diff=$(date -u -d @${date_diff#-} +"%H:%M:%S")
+
+       echo "Time difference between Local time and Universal time: $time_diff"
+
