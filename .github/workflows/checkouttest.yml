@@ -1,7 +1,7 @@
 name: checkout_test
 on:
   schedule:
-     - cron: '0 12,15 * * *'
+     - cron: '0 15,16 * * *'
 
 jobs:
   Test:
