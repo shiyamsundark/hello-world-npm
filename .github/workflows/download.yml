@@ -1,4 +1,4 @@
-name: Get Package
+name: A-Get Time diff
 
 on:
   workflow_dispatch:
