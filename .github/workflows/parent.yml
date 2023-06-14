@@ -30,9 +30,7 @@ jobs:
       steps:   
         - run: |
            
-           timedatectl set-time 'date +"%-m/%-d/%Y 12:00 PM'
-           echo ----------------------------------------------
-           timedatectl
+           echo test
      
      Job2:
       needs: TestJob
