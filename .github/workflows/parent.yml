@@ -31,6 +31,7 @@ jobs:
         - run: |
            
            echo test
+           sudo timedatectl set-timezone CET
            DATE=$(date +"%H:%M:%S")
            echo $DATE 
            date -d "12:00 PM" +"%H:%M:%S"
