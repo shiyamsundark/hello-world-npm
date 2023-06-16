@@ -31,7 +31,7 @@ jobs:
         - run: |
            
            echo test
-           DATE=$(date +%Y/%m/%d_%H:%M:%S)
+           DATE=$(date +"%H:%M:%S")
            echo $DATE 
            date -d "12:00 PM" +"%H:%M:%S"
      
