@@ -41,11 +41,11 @@ jobs:
 # #       if: ${{ always() && needs.TestJob.result == 'skip' }}
 #       uses: 2115-27/hello-world-npm/.github/workflows/child.yml@anotherbranch
       
-#      Job3:
-#        needs: Job2
-#        if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
-#        uses: ./.github/workflows/child2.yml
-#        with:
-#          status: ${{ needs.Job2.result }}
+     Job3:
+       needs: TestJob
+       if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
+       uses: ./.github/workflows/child2.yml
+       with:
+         status: ${{ needs.Job2.result }}
          
          
