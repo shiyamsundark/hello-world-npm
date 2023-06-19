@@ -14,5 +14,5 @@ jobs:
 
   
      - run: |
-        echo ${{ github.worklow }} is parent
+        echo ${{ github.workflow }} is parent
         echo ${{ inputs.status }} is Child status
