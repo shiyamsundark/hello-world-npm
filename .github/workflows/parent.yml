@@ -10,7 +10,7 @@ on:
             - 12:00 PM
             - 7:15 PM
 
-run-name: Brand Name
+run-name: second Brand Name
 jobs:
    
 #      Set_ReleaseVersion_Variable: 
