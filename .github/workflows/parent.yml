@@ -38,7 +38,7 @@ jobs:
             echo RUN_ID: $RUN_ID
             echo ----------------------input--------------------------
             RUN_NAME=$(curl -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/$RUN_ID" |  jq -r '.name')
-            echo RUN_NAME: $RUN-NAME
+            echo RUN_NAME: $RUN_NAME
           env:
             GH_TOKEN: ${{ SECRETS.REPO }}
         - run: sleep 120    
