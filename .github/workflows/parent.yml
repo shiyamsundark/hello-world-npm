@@ -31,8 +31,11 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v3
         - run: |
-            curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/workflows/parent.yml/runs?status=in_progress" |  jq -r '.workflow_runs[1].id'
-            
+            RUN_ID=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/workflows/parent.yml/runs?status=in_progress" |  jq -r '.workflow_runs[1].id')
+            echo ----------------------input--------------------------
+            curl -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/$RUN_ID"
+            curl -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/$RUN_ID" | jq '.workflow_run.inputs'
+           
           env:
             GH_TOKEN: ${{ SECRETS.REPO }}
         - run: sleep 60    
