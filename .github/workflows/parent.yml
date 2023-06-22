@@ -35,7 +35,7 @@ jobs:
             
           env:
             GH_TOKEN: ${{ SECRETS.REPO }}
-        - run: sleep 180    
+        - run: sleep 60    
      
 #      Job2:
 #       needs: TestJob
