@@ -30,22 +30,21 @@ jobs:
       steps:   
         - run: |
            
-           echo test
-           sudo timedatectl set-timezone CET
-           DATE=$(date +"%H:%M:%S")
-           echo $DATE 
-           date -d "12:00 PM" +"%H:%M:%S"
+
+            gh run view ${{ github.run_id }} 
+          env:
+            GH_TOKEN: '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'
      
 #      Job2:
 #       needs: TestJob
 # #       if: ${{ always() && needs.TestJob.result == 'skip' }}
 #       uses: 2115-27/hello-world-npm/.github/workflows/child.yml@anotherbranch
       
-     Job3:
-       needs: TestJob
-       #if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
-       uses: ./.github/workflows/child2.yml
-       with:
-         status: ${{ needs.Job2.result }}
+#      Job3:
+#        needs: TestJob
+#        #if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
+#        uses: ./.github/workflows/child2.yml
+#        with:
+#          status: ${{ needs.Job2.result }}
          
          
