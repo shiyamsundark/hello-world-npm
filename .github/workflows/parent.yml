@@ -22,15 +22,16 @@ jobs:
         
         - run: |
             echo test
+            echo ${{ vars.BRAND1 }} is status of BRAND1
             sleep 30
      
-     ChildJob:
-       needs: TestJob
-       uses: ./.github/workflows/child2.yml
-       with:
-         Brand: ${{ inputs.Brand }}
-       secrets:
-         REPO: ${{ secrets.REPO }}
+#      ChildJob:
+#        needs: TestJob
+#        uses: ./.github/workflows/child2.yml
+#        with:
+#          Brand: ${{ inputs.Brand }}
+#        secrets:
+#          REPO: ${{ secrets.REPO }}
          
          
          
