@@ -23,6 +23,7 @@ jobs:
           RUN_ID=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/workflows/parent.yml/runs?status=in_progress" |  jq -r '.workflow_runs[0].id')
           echo RUN_ID: $RUN_ID
           echo ----------------------run-name--------------------------
+          curl -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/$RUN_ID"
           RUN_NAME=$(curl -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/runs/$RUN_ID" |  jq -r '.name')
           echo RUN_NAME: $RUN_NAME
         env:
