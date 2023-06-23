@@ -11,7 +11,7 @@ on:
             - Brand2
             - Brand3
 
-run-name: ${{ inputs.Brand }}
+run-name: RunName-${{ inputs.Brand }}
 jobs:
      
      TestJob: 
