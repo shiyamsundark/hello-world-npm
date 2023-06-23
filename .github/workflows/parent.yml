@@ -20,9 +20,9 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v3
         
-        - run: |
-             echo Brand1 status= ${{ vars.BRAND1 }}
-             sleep 30
+#         - run: |
+#              echo Brand1 status= ${{ vars.BRAND1 }}
+#              sleep 30
              
 #         - run: |
 #             if [ ${{ inputs.Brand == 'BRAND1' }} ]; then
@@ -37,25 +37,25 @@ jobs:
 #                   echo Brand1 status= ${{ vars.BRAND1 }}
 #               done  
 #             fi  
-        - run: echo Brand1 status= ${{ vars.BRAND1 }}
+#         - run: echo Brand1 status= ${{ vars.BRAND1 }}
         
-        - run: |
-            echo test
-            echo ${{ vars.BRAND1 }} is status of BRAND1
-            echo in_progress > myfile.txt 
-            cat myfile.txt
-            gh variable set BRAND1 < myfile.txt
-            echo ${{ vars.BRAND1 }} is status of BRAND1 after updation
-          env:
-            GH_TOKEN: ${{ secrets.REPO }}
+#         - run: |
+#             echo test
+#             echo ${{ vars.BRAND1 }} is status of BRAND1
+#             echo in_progress > myfile.txt 
+#             cat myfile.txt
+#             gh variable set BRAND1 < myfile.txt
+#             echo ${{ vars.BRAND1 }} is status of BRAND1 after updation
+#           env:
+#             GH_TOKEN: ${{ secrets.REPO }}
      
-#      ChildJob:
-#        needs: TestJob
-#        uses: ./.github/workflows/child2.yml
-#        with:
-#          Brand: ${{ inputs.Brand }}
-#        secrets:
-#          REPO: ${{ secrets.REPO }}
+     ChildJob:
+       needs: TestJob
+       uses: ./.github/workflows/child2.yml
+       with:
+         Brand: ${{ inputs.Brand }}
+       secrets:
+         REPO: ${{ secrets.REPO }}
          
          
          
