@@ -14,24 +14,12 @@ on:
 run-name: ${{ inputs.Brand }}
 jobs:
    
-#      Set_ReleaseVersion_Variable: 
-#       runs-on: ubuntu-latest
-#       outputs:
-#         Version: ${{ steps.versionid.outputs.Version }}
-
-#       steps:
-#         - id: versionid
-#           run: | 
-#                echo setting release version!!
-#                newversion="23.01.0.147"
-#                echo $newversion is the version
-#                echo "Version=$newversion" >> $GITHUB_OUTPUT
      TestJob: 
       runs-on: ubuntu-latest
-#       needs: [Set_ReleaseVersion_Variable]
       steps:   
         - name: Checkout code
           uses: actions/checkout@v3
+        
         - run: |
             echo -----------------------run-id-----------------------------
             curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.REPO }}" "https://api.github.com/repos/2115-27/hello-world-npm/actions/workflows/parent.yml/runs?status=in_progress" 
@@ -42,18 +30,16 @@ jobs:
             echo RUN_NAME: $RUN_NAME
           env:
             GH_TOKEN: ${{ SECRETS.REPO }}
+        
         - run: sleep 120    
      
-#      Job2:
-#       needs: TestJob
-# #       if: ${{ always() && needs.TestJob.result == 'skip' }}
-#       uses: 2115-27/hello-world-npm/.github/workflows/child.yml@anotherbranch
-      
-#      Job3:
-#        needs: TestJob
-#        #if: ${{ always() && ((needs.Job2.result == 'failure') || (needs.Job2.result == 'success')) }}
-#        uses: ./.github/workflows/child2.yml
-#        with:
-#          status: ${{ needs.Job2.result }}
+     ChildJob:
+       needs: TestJob
+       uses: ./.github/workflows/child2.yml
+       with:
+         Brand: ${{ inputs.Brand }}
+       secrets:
+         REPO: ${{ secrets.REPO }}
+         
          
          
