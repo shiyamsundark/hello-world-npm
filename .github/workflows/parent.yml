@@ -23,7 +23,7 @@ jobs:
         - run: |
             echo test
             echo ${{ vars.BRAND1 }} is status of BRAND1
-            sleep 30
+            
      
 #      ChildJob:
 #        needs: TestJob
