@@ -30,7 +30,6 @@ jobs:
                     echo execution for brand1 is still in progress
                   fi
                   echo sleeping before checking again
-                  sleep 30
                   echo Brand1 status: ${{ vars.BRAND1 }}
               done  
             fi  
