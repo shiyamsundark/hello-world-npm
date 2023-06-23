@@ -7,14 +7,15 @@ on:
           type: choice
           required: true
           options:
-            - Brand1
+            - BRAND1
             - Brand2
             - Brand3
 
 run-name: ${{ inputs.Brand }}
 jobs:
-   
+     
      TestJob: 
+      if: ${{ vars.${{ inputs.Brand }} == 'in_progress' }}
       runs-on: ubuntu-latest
       steps:   
         - name: Checkout code
