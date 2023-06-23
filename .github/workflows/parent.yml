@@ -23,7 +23,12 @@ jobs:
         - run: |
             echo test
             echo ${{ vars.BRAND1 }} is status of BRAND1
-            
+            echo in_progress > myfile.txt 
+            cat myfile.txt
+            gh variable set MYVARIABLE < myfile.txt
+            echo ${{ vars.BRAND1 }} is status of BRAND1 after updation
+          env:
+            GH_TOKEN: ${{ secrets.REPO }}
      
 #      ChildJob:
 #        needs: TestJob
