@@ -21,14 +21,15 @@ jobs:
         - name: Zip workspace
           run: |
            
-           7z a "workspace.zip" "./"
+           7z a "workspace-${{ github.workflow }}-${{ github.run_number }}.zip" "./"
+           ls
            
         - name: Upload workspace as artifact
           if: always()
           uses: actions/upload-artifact@v3
           with:
-               name: "Workspace-JobName-RunNumber:${{ github.run_number }}"
-               path: workspace.zip
+               name: Workspace of JobName RunNumber-${{ github.run_number }}
+               path: workspace-${{ github.workflow }}-${{ github.run_number }}.zip
                retention-days: 7
                
         - name: Checkout code
