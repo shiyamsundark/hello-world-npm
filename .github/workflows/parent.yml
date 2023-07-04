@@ -16,7 +16,8 @@ jobs:
      
      TestJob: 
       runs-on: ubuntu-latest
-      steps:   
+      steps:
+        - run: echo ${{ github.run_number }}
         - name: Checkout code
           uses: actions/checkout@v3
         
