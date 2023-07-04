@@ -28,7 +28,7 @@ jobs:
           if: always()
           uses: actions/upload-artifact@v3
           with:
-               name: Workspace of JobName RunNumber-${{ github.run_number }}
+               name: Workspace of ${{ github.workflow }} RunNumber-${{ github.run_number }}
                path: workspace-${{ github.workflow }}-${{ github.run_number }}.zip
                retention-days: 7
                
@@ -64,13 +64,13 @@ jobs:
 #           env:
 #             GH_TOKEN: ${{ secrets.REPO }}
      
-     ChildJob:
-       needs: TestJob
-       uses: ./.github/workflows/child2.yml
-       with:
-         Brand: ${{ inputs.Brand }}
-       secrets:
-         REPO: ${{ secrets.REPO }}
+#      ChildJob:
+#        needs: TestJob
+#        uses: ./.github/workflows/child2.yml
+#        with:
+#          Brand: ${{ inputs.Brand }}
+#        secrets:
+#          REPO: ${{ secrets.REPO }}
          
          
          
