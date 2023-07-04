@@ -18,6 +18,19 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - run: echo ${{ github.run_number }}
+        - name: Zip workspace
+          run: |
+           Get-ChildItem -Path ./
+           7z a "workspace.zip" "./"
+           
+        - name: Upload workspace as artifact
+          if: always()
+          uses: actions/upload-artifact@v3
+          with:
+               name: "Workspace-JobName-RunNumber:${{ github.run_number }}"
+               path: workspace.zip
+               retention-days: 7
+               
         - name: Checkout code
           uses: actions/checkout@v3
         
