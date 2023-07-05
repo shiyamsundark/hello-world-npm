@@ -17,23 +17,24 @@ jobs:
      TestJob: 
       runs-on: ubuntu-latest
       steps:
+
         - run: echo ${{ github.run_number }}
-        - name: Zip workspace
-          run: |
+#         - name: Zip workspace
+#           run: |
            
-           7z a "workspace-${{ github.workflow }}-${{ github.run_number }}.zip" "./"
-           ls
+#            7z a "workspace-${{ github.workflow }}-${{ github.run_number }}.zip" "./"
+#            ls
            
-        - name: Upload workspace as artifact
-          if: always()
-          uses: actions/upload-artifact@v3
-          with:
-               name: Workspace of ${{ github.workflow }} RunNumber-${{ github.run_number }}
-               path: workspace-${{ github.workflow }}-${{ github.run_number }}.zip
-               retention-days: 7
+#         - name: Upload workspace as artifact
+#           if: always()
+#           uses: actions/upload-artifact@v3
+#           with:
+#                name: Workspace of ${{ github.workflow }} RunNumber-${{ github.run_number }}
+#                path: workspace-${{ github.workflow }}-${{ github.run_number }}.zip
+#                retention-days: 7
                
-        - name: Checkout code
-          uses: actions/checkout@v3
+#         - name: Checkout code
+#           uses: actions/checkout@v3
         
 #         - run: |
 #              echo Brand1 status= ${{ vars.BRAND1 }}
@@ -64,13 +65,13 @@ jobs:
 #           env:
 #             GH_TOKEN: ${{ secrets.REPO }}
      
-#      ChildJob:
-#        needs: TestJob
-#        uses: ./.github/workflows/child2.yml
-#        with:
-#          Brand: ${{ inputs.Brand }}
-#        secrets:
-#          REPO: ${{ secrets.REPO }}
+     ChildJob:
+       needs: TestJob
+       uses: ./.github/workflows/child2.yml
+       with:
+         Brand: ${{ inputs.Brand }}
+       secrets:
+         REPO: ${{ secrets.REPO }}
          
          
          
