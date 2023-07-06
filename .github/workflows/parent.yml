@@ -7,7 +7,7 @@ on:
           type: choice
           required: true
           options:
-            - BRAND1
+            - BRAND 1
             - Brand2
             - Brand3
 
