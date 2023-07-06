@@ -15,10 +15,15 @@ run-name: RunName-${{ inputs.Brand }}
 jobs:
      
      TestJob: 
-      runs-on: ubuntu-latest
+      runs-on: windows-latest
       steps:
 
-        - run: echo ${{ github.run_number }}
+        - run: |
+            echo ${{ github.run_number }}
+            $Brand="${{ inputs.Brand }}"
+            echo "Brand=$Brand"
+            $folder="$Brand"
+            echo "folder=$folder"
 #         - name: Zip workspace
 #           run: |
            
