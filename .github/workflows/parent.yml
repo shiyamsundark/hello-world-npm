@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs: 
        Brand:
-          description: 'Brand'
+          description: 'Brand Type'
           type: choice
           required: true
           options:
