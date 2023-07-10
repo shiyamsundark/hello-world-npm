@@ -11,19 +11,26 @@ on:
             - Brand2
             - Brand3
 
-run-name: RunName-${{ inputs.Brand }}
+
 jobs:
      
      TestJob: 
-      runs-on: windows-latest
+      runs-on: ubuntu-latest
       steps:
-
+        - uses: actions/checkout@v3
         - run: |
-            echo ${{ github.run_number }}
-            $Brand="${{ inputs.Brand }}"
-            echo "Brand=$Brand"
-            $folder="$Brand"
-            echo "folder=$folder"
+            response=$(curl -s -o /dev/null -w "%{http_code}" "https://api.github.com/repos/2115-27/hello-world-npm/contents/commits.md?ref=master")
+            echo $response is the response
+          
+          env:
+             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+             
+#         - run: |
+#             echo ${{ github.run_number }}
+#             $Brand="${{ inputs.Brand }}"
+#             echo "Brand=$Brand"
+#             $folder="$Brand"
+#             echo "folder=$folder"
 #         - name: Zip workspace
 #           run: |
            
