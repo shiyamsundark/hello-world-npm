@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
+       echo ${{ github.repository }}
        sudo timedatectl set-timezone CET
        timedatectl
        timedatectl >> time.txt
