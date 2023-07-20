@@ -7,6 +7,10 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
+    - name: JOB
+      continue-on-error: true
+      run: |
+        exit 1
     - run: |
        echo ${{ github.repository }}
        sudo timedatectl set-timezone CET
