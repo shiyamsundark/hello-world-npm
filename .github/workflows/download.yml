@@ -18,4 +18,4 @@ jobs:
           git status
           git commit -m "Adding release-note.html file changes"
           
-          git push origin HEAD:master
+          git push origin HEAD:master --force
