@@ -7,26 +7,14 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-    - name: JOB
-      continue-on-error: true
-      run: |
-        exit 1
+
     - run: |
-       echo ${{ github.repository }}
-       sudo timedatectl set-timezone CET
-       timedatectl
-       timedatectl >> time.txt
-       echo -----------------------------
-       cat time.txt
-       
-       local_time=$(grep "Local time:" time.txt | awk '{print $4, $5}')
-       universal_time=$(grep "Universal time:" time.txt | awk '{print $4, $5}')
-       
-       echo $local_time is local_time
-       echo $universal_time is universal_time
-
-       date_diff=$(($(date -d "$local_time" +%s) - $(date -d "$universal_time" +%s)))
-       time_diff=$(date -u -d @${date_diff#-} +"%H:%M:%S")
-
-       echo "Time difference between Local time and Universal time: $time_diff"
-
+          git config user.name "${{ runner.name }}"
+          git config user.email "$(hostname -f)"  
+          
+          echo test > ${{ github.workspace }}/release-note.html
+          git add ${{ github.workspace }}/release-note.html
+          git status
+          git commit -m "Adding release-note.html file changes"
+          
+          git push origin HEAD:master
