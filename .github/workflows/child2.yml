@@ -1,6 +1,11 @@
 name: Child2
 
 on:
+  workflow_dispatch:
+    inputs:
+      Brand:
+        required: true
+        type: string
   workflow_call:
     inputs:
       Brand:
