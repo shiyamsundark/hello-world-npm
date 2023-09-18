@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - run:
+    - run: |
         touch file.pem
         Icacls file.pem
         
