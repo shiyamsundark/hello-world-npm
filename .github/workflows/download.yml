@@ -2,22 +2,26 @@ name: A-Get Time diff
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 5,13 * * *'
+  # schedule:
+  #   - cron: '0 5,13 * * *'
 
 jobs:
   install:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: actions/checkout@v3
-    - run: |
-          git config user.name "${{ runner.name }}"
-          git config user.email "$(hostname -f)"  
+    - run:
+        touch file.pem
+        Icacls file.pem
+        
+    # - uses: actions/checkout@v3
+    # - run: |
+    #       git config user.name "${{ runner.name }}"
+    #       git config user.email "$(hostname -f)"  
           
-          echo test > ${{ github.workspace }}/release-note.html
-          git add ${{ github.workspace }}/release-note.html
-          git status
-          git commit -m "Adding release-note.html file changes"
+    #       echo test > ${{ github.workspace }}/release-note.html
+    #       git add ${{ github.workspace }}/release-note.html
+    #       git status
+    #       git commit -m "Adding release-note.html file changes"
           
-          git push origin HEAD:master --force
+    #       git push origin HEAD:master --force
