@@ -12,6 +12,7 @@ jobs:
 
     - run: |
         touch file.pem
+        ls
         Icacls file.pem
         
     # - uses: actions/checkout@v3
