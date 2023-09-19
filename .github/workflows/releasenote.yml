@@ -1,0 +1,138 @@
+name: A_Release_Notes
+on:
+  pull_request:
+     types: [closed]
+     branches:
+      - FeatureUI-ReleaseNote
+      - DEV-ReleaseNote
+
+
+
+
+jobs:
+
+  Add-PR-details-to-Feature: 
+    if: ${{ (github.event.pull_request.merged == true) && (github.event.pull_request.base.ref == 'FeatureUI-ReleaseNote') }}
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.CROSS_REPO_PAT }}
+
+    - run: mkdir sampleDev/
+         
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      with:
+        ref: 'DEV-ReleaseNote'
+        path: sampleDev
+  
+    - name: View Pull Request
+      run: |
+        echo ---------------getting PRtitle-----------------------
+        PRtitle=$(gh pr view ${{ github.event.pull_request.head.ref }} --json title --jq '.title')
+        echo $PRtitle is PRtitle
+        echo ${{ github.ref_name }} is current branch
+
+        echo -----------getting taskID and setting taskURL----------------------
+        gh pr view ${{ github.event.pull_request.head.ref }} --json body --jq '.body' >> comments.txt 
+        PRAuthor=$(gh pr view ${{ github.event.pull_request.head.ref }} --json author --jq '.author.login')
+        PRNumber=$(gh pr view ${{ github.event.pull_request.head.ref }} --json number --jq '.number')
+        PRLink="https://github.com/${{ github.repository }}/pull/${PRNumber}"
+        current_date=$(date +'%d %B %Y')
+        comment=$(grep "AB#" comments.txt)
+        echo $comment is comment
+        echo $PRAuthor is PRAuthor
+        echo $PRNumber is PRNumber
+        ad_num=$(echo $comment | awk -F']' '{print $1}')
+        echo $ad_num
+        ad_num1="${ad_num#?}"
+        echo $ad_num1
+        echo $ad_num1 is AzureDevOps User Story
+        if [[ $ad_num1 =~ ^AB#.*[0-9]$ ]];then
+          echo Valid UserStory.. 
+          TaskID=$(echo "$ad_num1" | grep -oE 'AB#([0-9]+)' | grep -oE '[0-9]+')
+          taskURL="https://agco-dcx.visualstudio.com/ONE%20Digital/_workitems/edit/$TaskID"
+          echo $TaskID is TaskID
+          echo $taskURL is taskURL
+          echo -------------------------Checking if html file exists in dev branch------------------------------
+          pwd
+          cd sampleDev/
+          ls -lrta
+          pwd
+          if [[ -f "${{ github.workspace }}/sampleDev/release-note.html" ]]; then
+            echo "File exists in dev branch.. appending new PR details with old details.."
+            echo "Checking whether html file exists in feature branch.."
+            if [[ -f "${{ github.workspace }}/release-note.html" ]]; then
+              echo -e "PR - <a href=\"$PRLink\">$PRNumber</a> ${PRtitle}, ADO Ref - <a href=\"$taskURL\">$TaskID</a>, Authored by ${PRAuthor} , Merged on $current_date\n" >> ${{ github.workspace }}/release-note.html
+             
+            else  
+              cp ${{ github.workspace }}/sampleDev/release-note.html ${{ github.workspace }}/ExistingReleaseNote.html
+              echo -e "PR - <a href=\"$PRLink\">$PRNumber</a> ${PRtitle}, ADO Ref - <a href=\"$taskURL\">$TaskID</a>, Authored by ${PRAuthor} , Merged on $current_date\n" >> ${{ github.workspace }}/ExistingReleaseNote.html
+              
+              mv ${{ github.workspace }}/ExistingReleaseNote.html ${{ github.workspace }}/release-note.html
+            fi  
+          else
+            echo "File does not exists in dev branch...creating new html file"
+            echo -e "PR - <a href=\"$PRLink\">$PRNumber</a> ${PRtitle}, ADO Ref - <a href=\"$taskURL\">$TaskID</a>, Authored by ${PRAuthor} , Merged on $current_date\n" >> ${{ github.workspace }}/release-note.html
+            
+          fi  
+        fi
+        
+        cat ${{ github.workspace }}/release-note.html
+               
+      env:
+             GITHUB_TOKEN: ${{ secrets.CROSS_REPO_PAT }}
+         
+    - run: |
+          pwd
+          ls -lrta
+
+    - name: Push html file to feature branch
+      if: ${{ github.event.pull_request.base.ref == 'FeatureUI-ReleaseNote' }}
+      run: |
+          git config user.name "${{ runner.name }}"
+          git config user.email "$(hostname -f)"  
+
+          git add ${{ github.workspace }}/release-note.html
+          git status
+          git commit -m "Adding release-note.html file changes"
+          echo ${{ github.event.pull_request.base.ref }} is Feature branch
+          git push origin HEAD:${{ github.event.pull_request.base.ref }}
+
+
+      env:
+         GITHUB_TOKEN: ${{ secrets.CROSS_REPO_PAT }}   
+
+  Remove-html-from-Feature:
+   if: ${{ (github.event.pull_request.merged == true) && (github.event.pull_request.base.ref == 'DEV-ReleaseNote') }}
+   runs-on: ubuntu-latest
+   steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+            ref: ${{ github.event.pull_request.head.ref }}
+            token: ${{ secrets.CROSS_REPO_PAT }}
+
+      - name: Remove html file from Feature
+        run: |
+        
+            if [[ -f "release-note.html" ]]; then
+               git config user.name "${{ runner.name }}"
+               git config user.email "$(hostname -f)"
+               echo "------------------current branch----------------------"
+               git branch
+               echo "------------------Removing release-note.html file with PR details from feature branch-----------------"
+               git rm release-note.html
+               git commit -m "Removing release-note.html file from FeatureUI branch"
+               echo ${{ github.event.pull_request.head.ref }} is branch
+               git push origin HEAD:${{ github.event.pull_request.head.ref }}
+            else
+              echo "No file named release-note.html in FeatureUI branch"
+            fi    
+           
+        env:
+            GITHUB_TOKEN: ${{ secrets.CROSS_REPO_PAT }}   
+            
