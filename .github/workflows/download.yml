@@ -2,8 +2,18 @@ name: A-Get Time diff
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 5,13 * * *'
+    inputs: 
+         version:
+          description: 'Version'
+          required: true
+          type: string       
+         environment:
+          required: true
+          type: choice
+          description: Environment
+          options: 
+            - pg
+            - abc
 
 jobs:
   install:
@@ -13,16 +23,10 @@ jobs:
     - run: |
         touch file.pem
         ls
-        Icacls file.pem
-        
-    # - uses: actions/checkout@v3
-    # - run: |
-    #       git config user.name "${{ runner.name }}"
-    #       git config user.email "$(hostname -f)"  
-          
-    #       echo test > ${{ github.workspace }}/release-note.html
-    #       git add ${{ github.workspace }}/release-note.html
-    #       git status
-    #       git commit -m "Adding release-note.html file changes"
-          
-    #       git push origin HEAD:master --force
+       
+    - name: Generate summary
+          run: |
+            echo "Environment: ${{ inputs.environment }}" >> $GITHUB_STEP_SUMMARY
+            echo "Version: ${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
+
+            
