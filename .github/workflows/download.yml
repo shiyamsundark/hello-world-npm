@@ -25,7 +25,7 @@ jobs:
         ls
        
     - name: Generate summary
-          run: |
+      run: |
             echo "Environment: ${{ inputs.environment }}" >> $GITHUB_STEP_SUMMARY
             echo "Version: ${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
 
