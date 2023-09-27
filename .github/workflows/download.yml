@@ -29,7 +29,10 @@ jobs:
             echo "Version: ${{ inputs.version }}" >> $GITHUB_STEP_SUMMARY
 
     - run: |
-         gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/2115-27/hello-world-npm/actions/runs/6321920456/job/17166648559/summary_raw
+         gh api \
+         -H "Accept: application/vnd.github+json" \
+         -H "X-GitHub-Api-Version: 2022-11-28" \
+         /repos/2115-27/hello-world-npm/actions/runs/6321920456/job/17166648559/summary_raw
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
 
